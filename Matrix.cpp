@@ -1,3 +1,4 @@
+#pragma once
 #include "Matrix.h"
 
 Matrix::Matrix(unsigned int N): size(N)
@@ -34,4 +35,9 @@ void Matrix::add_connection(DirectConnection *cnt)
 DirectConnection Matrix::operator()(unsigned int j, unsigned int i)
 {
     return *p[j][i];
+}
+
+Matrix::~Matrix()
+{
+    delete p;
 }
