@@ -20,4 +20,4 @@ City.o: City.h City.cpp
 
 
 clean:
-	rm -f City.o Connection.o DirectConnection.o Matrix.o DataBase.o project_test.out execute_project_file.o
+	rm -f City.o Connection.o DirectConnection.o Matrix.o DataBase.o project_test.out execute_project_file.o RouteFinder.o
