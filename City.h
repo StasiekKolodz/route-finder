@@ -1,7 +1,6 @@
 
 #include <iostream>
 #include <vector>
-#include "DirectConection.h"
 class City
 {
     private:
