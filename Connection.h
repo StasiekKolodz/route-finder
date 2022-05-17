@@ -1,6 +1,6 @@
 #include "DirectConnection.h"
 
-class Conection
+class Connection
 {
     private:
     std::vector<DirectConnection> conection_elements;
@@ -9,7 +9,7 @@ class Conection
     unsigned int total_cost;
 
     public:
-    Conection();
+    Connection();
     void add_direct_conection(DirectConnection const& dc);
     unsigned int get_total_time() const { return total_time;}
     unsigned int get_total_distance() const { return total_distance;}
