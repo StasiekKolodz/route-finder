@@ -35,3 +35,8 @@ DirectConnection Matrix::operator()(unsigned int j, unsigned int i)
 {
     return *p[j][i];
 }
+
+Matrix::~Matrix()
+{
+    delete p;
+}
