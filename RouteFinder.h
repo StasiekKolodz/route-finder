@@ -1,10 +1,11 @@
+#pragma once
 #include <iostream>
 #include <Connection.h>
 
 class RouteFinder
 {
     Connection best_connection;
-    
+
     public:
     RouteFinder(Connection bc) : best_connection(bc) {}
     Connection find_fastest(City A, City B);

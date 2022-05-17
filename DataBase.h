@@ -1,3 +1,4 @@
+#pragma once
 #include "DirectConnection.h"
 #include "City.h"
 #include <vector>
