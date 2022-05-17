@@ -1,4 +1,4 @@
-#pragma once
+
 #include "Matrix.h"
 
 Matrix::Matrix(unsigned int N): size(N)
