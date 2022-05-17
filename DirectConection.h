@@ -21,4 +21,4 @@ class DirectConection
     City get_PlaceA() const { return PlaceA; }
     City get_PlaceB() const { return PlaceB; }
 
-}
+};
