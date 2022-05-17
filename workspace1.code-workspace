@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "route-finder",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
