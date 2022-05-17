@@ -5,16 +5,22 @@ class City
 {
     private:
     std::string name;
-    bool isTrainStation;
-    bool isBusStation;
+    bool isTrain;
+    bool isBus;
     // std::vector<DirectConnection> dc_vec;
     public:
-    City(std::string n, bool isTrain=false, bool isBus=false);
+    City(std::string n, bool isTrain=false, bool isBus=false) : name(n), isTrain(isTrain), isBus(isBus)
+    {}
     // void add_conection(const& DirectConection dc);
-    std::string get_name() const;
+    std::string get_name() const
+    {return name;}
     // std::vector<DirectConnection> get_dc_vec() const;
-    bool isBusStation() const;
-    bool isTrainStation() const;
-    void setTrainStation(bool);
-    void setBusStation(bool);
+    bool isBusStation() const
+    {return isBus;}
+    bool isTrainStation() const
+    {return isTrain;}
+    void setTrainStation(bool)
+    {}
+    void setBusStation(bool)
+    {}
 };
