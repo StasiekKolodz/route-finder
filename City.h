@@ -23,4 +23,12 @@ class City
     {}
     void setBusStation(bool)
     {}
+    bool operator==(City const& other_city) const
+    {
+        return (this->name == other_city.name);
+    }
+    bool operator!=(City const& other_city) const
+    {
+        return (this->name != other_city.name);
+    }
 };

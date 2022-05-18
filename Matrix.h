@@ -1,17 +1,31 @@
 #pragma once
 #include "DirectConnection.h"
+#include<sstream>
 
 class Matrix
 {
 private:
     DirectConnection ***p;
     unsigned int size;
+    std::vector<City> cites;
+    void extend_matrix();
 
 
 public:
-    Matrix(unsigned int N);
+    Matrix();
     void add_connection(DirectConnection *cnt);
-    DirectConnection operator()(unsigned int j, unsigned int i);
+    bool isCity(City const& city) const;
+    DirectConnection * operator()(City const& CityA, City const& CityB);
+    unsigned int get_size() const
+    {
+        return size;
+    }
+    std::vector<City> get_cities() const
+    {
+        return cites;
+    }
+
+    std::string description() const;
 
     ~Matrix();
 };
