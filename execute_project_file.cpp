@@ -3,37 +3,6 @@
 
 int main()
 {
-    // // Matrix test
-    // City A("A", true, false);
-    // City B("B", true, false);
-    // City C("C", true, false);
-    // City D("D", true, false);
-
-    // DirectConnection d_AB(1,2000,50,3000,A,B);
-    // DirectConnection d_BC(2,2000,50,3000,B,C);
-    // DirectConnection d_BD(2,2000,50,3000,B,D);
-
-    // Matrix m;
-    // m.add_connection(&d_AB);
-    // std::cout << m.get_size() << std::endl;
-    // std::cout << m.get_cities()[1].get_name() << std::endl;
-    // // if(m.isCity(A)) std::cout << "kupa";
-
-    // m.add_connection(&d_BC);
-    // std::cout << m.get_size() << std::endl;
-    // m.add_connection(&d_BD);
-    // std::cout << m.get_size() << std::endl;
-
-    // m.print();
-
-    // std::cout << m(A,B)->get_PlaceA().get_name() << std::endl;
-    // std::cout << m(B,C)->get_PlaceB().get_name() << std::endl;
-    // std::cout << m(B,D)->get_PlaceB().get_name() << std::endl;
-
-    // if(m(A,D) == nullptr)
-    // std::cout << "DUPA" << std::endl;
-    // else
-    // std::cout << "DZIALA" << std::endl;
 
 
     // TESTS OF MATRIX
@@ -50,9 +19,10 @@ int main()
     // Test 0 - Creating an empty matrix
     if(matrix.get_size() != 0)
     std::cerr << "MATRIX: TEST 0 - FAILED" << std::endl;
-
-    if(matrix(Krakow, Warszawa) != nullptr)
+    else if(matrix(Krakow, Warszawa) != nullptr)
     std::cerr << "MATRIX: TEST 0 - FAILED" << std::endl;
+    else
+    std::cerr << "MATRIX: TEST 0 - PASSED" << std::endl;
 
 
     // Test 1 - Adding connection to matrix
@@ -61,23 +31,37 @@ int main()
 
     if(matrix.get_size() != 2)
     std::cerr << "MATRIX: TEST 1 - FAILED" << std::endl;
-
-    try
-    {
-        matrix(Krakow, Warszawa);
-    }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() <<"MATRIX: TEST 1 - FAILED" << std::endl;
-    }
-
-    if(matrix(Krakow,Warszawa)->get_connection_id()!=1)
+    else if(matrix(Krakow,Warszawa)->get_connection_id()!=1)
     std::cerr << "MATRIX: TEST 1 - FAILED" << std::endl;
+    else
+    std::cerr << "MATRIX: TEST 1 - PASSED" << std::endl;
 
 
     // Test 2 - Adding more matrix
+    DirectConnection Warszawa_Gdynia(2,250000,45,180,Warszawa,Gdynia);
+    DirectConnection Wroclaw_Krakow(3,250000,45,180,Wroclaw,Krakow);
+    matrix.add_connection(&Warszawa_Gdynia);
+    matrix.add_connection(&Wroclaw_Krakow);
 
+    if(matrix.get_size() != 4)
+    std::cerr << "MATRIX: TEST 2 - FAILED" << std::endl;
+    else if(matrix(Warszawa, Gdynia)->get_connection_id() != 2 || matrix(Krakow, Wroclaw)->get_connection_id() != 3)
+    std::cerr << "MATRIX: TEST 2 - FAILED" << std::endl;
+    else if(matrix(Gdynia, Krakow) != nullptr)
+    std::cerr << "MATRIX: TEST 2 - FAILED" << std::endl;
+    else
+    std::cerr << "MATRIX: TEST 2 - PASSED" << std::endl;
 
+    // Test 3 - throwing error during attempt to add connection that already exist
+    try
+    {
+        matrix.add_connection(&Wroclaw_Krakow);
+        std::cerr << "MATRIX: TEST 3 - FAILED" << std::endl;
+    }
+    catch(char const* e)
+    {
+        std::cerr << "MATRIX: TEST 3 - PASSED with thrown msg: " << e << std::endl;
+    }
 
     return 0;
 }

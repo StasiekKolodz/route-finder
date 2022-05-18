@@ -1,5 +1,6 @@
 #pragma once
 #include "DirectConnection.h"
+#include<sstream>
 
 class Matrix
 {
@@ -24,7 +25,7 @@ public:
         return cites;
     }
 
-    void print() const;
+    std::string description() const;
 
     ~Matrix();
 };
