@@ -73,7 +73,11 @@ void Matrix::add_connection(DirectConnection *cnt)
                 p[size-1][i]=cnt;
             }
         }
+<<<<<<< HEAD
+        // Przydałby się jakiś wyjątek jeśli if niespełniony
+=======
         cites.push_back(cnt->get_PlaceA());
+>>>>>>> master
     }
     else
     {
