@@ -26,7 +26,7 @@ int main()
 
 
     // Test 1 - Adding connection to matrix
-    DirectConnection Krakow_Warszawa(1,300000,80,240,Krakow,Warszawa);
+    DirectConnection Krakow_Warszawa(1,300000,80,240,Krakow,Warszawa, BUS);
     matrix.add_connection(&Krakow_Warszawa);
 
     if(matrix.get_size() != 2)
@@ -38,8 +38,8 @@ int main()
 
 
     // Test 2 - Adding more matrix
-    DirectConnection Warszawa_Gdynia(2,250000,45,180,Warszawa,Gdynia);
-    DirectConnection Wroclaw_Krakow(3,250000,45,180,Wroclaw,Krakow);
+    DirectConnection Warszawa_Gdynia(2,250000,45,180,Warszawa,Gdynia, BUS);
+    DirectConnection Wroclaw_Krakow(3,250000,45,180,Wroclaw,Krakow, BUS);
     matrix.add_connection(&Warszawa_Gdynia);
     matrix.add_connection(&Wroclaw_Krakow);
 

@@ -48,7 +48,20 @@ bool Matrix::isCity(City const& city) const
 void Matrix::add_connection(DirectConnection *cnt)
 {
     if(this->isCity(cnt->get_PlaceA()) && this->isCity(cnt->get_PlaceB()))
-        throw "Matrix already has that connection";
+    {
+        for(int i = 0; i < size; i++)
+        {
+        for(int j = 0; j < size; j++)
+        {
+            if(p[j][i]->get_PlaceA() == cnt->get_PlaceA() && p[j][i]->get_PlaceB() == cnt->get_PlaceB())
+            {
+                p[j][i]=cnt;
+                p[i][j]=cnt;
+                break;
+            }
+        }
+        }
+    }
     else if(this->isCity(cnt->get_PlaceA()))
     {
         this->extend_matrix();
