@@ -21,7 +21,7 @@ City.o: City.h City.cpp
 file_test: file_test.o
 	g++ -o file_test.out file_test.o
 
-file_test.o:
+file_test.o: file_test.cpp
 	g++ -c file_test.cpp
 
 
