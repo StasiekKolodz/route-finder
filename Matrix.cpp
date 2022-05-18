@@ -1,4 +1,3 @@
-
 #include "Matrix.h"
 
 Matrix::Matrix()
@@ -108,21 +107,23 @@ Matrix::~Matrix()
     delete p;
 }
 
-void Matrix::print() const
+std::string Matrix::description() const
 {
+    std::stringstream ss;
     for(int i = 0; i < size; i++)
     {
     for(int j = 0; j < size; j++)
     {
     if(p[i][j] != nullptr)
     {
-        std::cout << p[i][j]->get_PlaceA().get_name() << "-" << p[i][j]->get_PlaceB().get_name() << "\t";
+        ss << p[i][j]->get_connection_id() << "\t";
     }
     else
     {
-        std::cout << "NULL\t";
+        ss << "NULL\t";
     }
     }
-    std::cout << std:: endl;
+    ss << std:: endl;
     }
+    return ss.str();
 }
