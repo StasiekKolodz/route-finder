@@ -28,6 +28,7 @@ void Matrix::add_connection(DirectConnection *cnt)
         {
             p[j][i] = cnt;
         }
+        // Przydałby się jakiś wyjątek jeśli if niespełniony
     }
     }
 }
