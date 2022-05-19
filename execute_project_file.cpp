@@ -1,5 +1,9 @@
 #include <iostream>
 #include "Matrix.h"
+#include "DataBase.h"
+#include <vector>
+
+using namespace std;
 
 int main()
 {
@@ -63,5 +67,22 @@ int main()
         std::cerr << "MATRIX: TEST 3 - PASSED with thrown msg: " << e << std::endl;
     }
 
+    //TESTY CSV
+
+    std::vector<DirectConnection> connections;
+    DataBase base(connections);
+    base.load_file();
+    for(auto connection : connections)
+    {
+        cout << "Id: " << connection.get_connection_id() << endl <<
+        "Distance: " << connection.get_distance() << endl <<
+        "Cost: " << connection.get_cost() << endl <<
+        "Time: " << connection.get_time() << endl <<
+        "From: " << connection.get_PlaceA().get_name() << "(" << connection.get_PlaceA().isTrainStation() <<
+        connection.get_PlaceA().isBusStation() << ")" << endl <<
+        "To: " <<  connection.get_PlaceB().get_name() << "(" << connection.get_PlaceB().isTrainStation() <<
+        connection.get_PlaceB().isBusStation() << ")";
+    }
+    cout << connections.size() << endl;
     return 0;
 }

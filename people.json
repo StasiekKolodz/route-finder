@@ -1,7 +1,22 @@
-{"Anna" : { 
-    "age": 18,
-    "profession": "student"},
-"Ben" : {
-    "age" : "nineteen",
-    "profession": "mechanic"}
-}
+ [
+    {
+        "Krakow-Warszawa": { 
+            "connection_id": 1,
+            "distance": 290.4,
+            "cost": 90,
+            "time": 2.5,
+            "PlaceA": "Krakow",
+            "PlaceB": "Warszawa"
+        }
+    },
+    {
+        "Tarnow-Radom" : {
+            "connection_id": 2,
+            "distance": 190,
+            "cost": 56,
+            "time": 2.1,
+            "PlaceA": "Tarnow",
+            "PlaceB": "Radom"
+        }
+    }
+]
