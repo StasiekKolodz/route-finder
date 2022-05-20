@@ -72,7 +72,7 @@ int main()
     std::vector<DirectConnection> connections;
     DataBase base(connections);
     base.load_file();
-    for(auto connection : connections)
+    for(auto connection : base.get_connections())
     {
         cout << "Id: " << connection.get_connection_id() << endl <<
         "Distance: " << connection.get_distance() << endl <<
@@ -81,8 +81,12 @@ int main()
         "From: " << connection.get_PlaceA().get_name() << "(" << connection.get_PlaceA().isTrainStation() <<
         connection.get_PlaceA().isBusStation() << ")" << endl <<
         "To: " <<  connection.get_PlaceB().get_name() << "(" << connection.get_PlaceB().isTrainStation() <<
-        connection.get_PlaceB().isBusStation() << ")";
+        connection.get_PlaceB().isBusStation() << ")" << endl;
     }
-    cout << connections.size() << endl;
+
+    if(base.get_connections().size() != 2)
+    {
+        cout << "test failed, adding objects was unsuccesfull" << endl;
+    }
     return 0;
 }

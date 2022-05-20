@@ -14,6 +14,10 @@ class DataBase
         connections = c;
     }
     void load_file();
+    std::vector<DirectConnection> get_connections()
+    {
+        return connections;
+    }
     // Przeciążenie operatora []. Najlepiej kilka, np żeby dało się znaleźć miasto po nazwie
 
 };
