@@ -1,9 +1,8 @@
 #pragma once
 #include "Matrix.h"
 #include <vector>
+#include "enums.h"
 
-enum possible_type {BOTH, BUS, TRAIN};
-enum possible_search_setting {CHEAPEST, FASTEST, SHORTEST};
 
 class DataBase
 {

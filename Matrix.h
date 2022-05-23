@@ -15,8 +15,8 @@ public:
     Matrix();
     void add_connection(DirectConnection *cnt);
     bool isCity(City const& city) const;
-    DirectConnection * operator()(City const& CityA, City const& CityB);
-    DirectConnection * operator()(int i, int j);
+    DirectConnection* operator()(City const& CityA, City const& CityB);
+    DirectConnection* operator()(int i, int j);
     unsigned int get_size() const
     {
         return size;
