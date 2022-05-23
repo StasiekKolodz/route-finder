@@ -2,25 +2,18 @@
 #include <iostream>
 #include <vector>
 #include "City.h"
-
+#include "Route.h"
 enum station_type {Bus, Train};
 
-class DirectConnection
+class DirectConnection : public Route
 {
     protected:
         station_type type;
-        unsigned int connection_id;
-        unsigned int distance;
-        unsigned int cost;
-        unsigned int time;
-        City PlaceA;
-        City PlaceB;
     public:
         DirectConnection(unsigned int id, unsigned int d, unsigned int c,
-        unsigned int t, City const& PA, City const& PB, station_type type) :
-        connection_id(id), distance(d), cost(c), time(t), PlaceA(PA), PlaceB(PB), type(type)
+        unsigned int t, City const& PA, City const& PB, station_type tp) : Route(id, d, c, t, PA, PB)
         {
-            if(PA == PB) throw "Place A and place B must be different";
+            type = tp;
         }
         // Obsługa błędu gdy PlaceA == PlaceB
         unsigned int get_connection_id() const { return connection_id; }
