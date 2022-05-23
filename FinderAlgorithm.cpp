@@ -184,3 +184,17 @@ Connection FinderAlgorithm::generate_connection(City const& PlaceA, City const& 
     }
     return ret_connection;
 }
+
+Connection FinderAlgorithm::generate_connection_setting(City const& PlaceA, City const& PlaceB, possible_search_setting s_set)
+{
+    if(s_set == CHEAPEST){
+        return this->generate_connection_cost(PlaceA, PlaceB);
+    }
+    else if(s_set == FASTEST){
+        return this->generate_connection_time(PlaceA, PlaceB);
+    }
+    else if(s_set == SHORTEST){
+        return this->generate_connection_dist(PlaceA, PlaceB);
+    }
+    // Wyjątek dla enuma
+}

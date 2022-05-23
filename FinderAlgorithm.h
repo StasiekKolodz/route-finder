@@ -2,6 +2,8 @@
 #include "Matrix.h"
 #include "Connection.h"
 #include <algorithm>
+#include "enums.h"
+
 class FinderAlgorithm
 {
     private:
@@ -27,6 +29,7 @@ class FinderAlgorithm
     Connection generate_connection_cost(City const& PlaceA, City const& PlaceB);
     Connection generate_connection_dist(City const& PlaceA, City const& PlaceB);
     Connection generate_connection(City const& PlaceA, City const& PlaceB);
+    Connection generate_connection_setting(City const& PlaceA, City const& PlaceB, possible_search_setting s_set);
     void reset();
 
 };
