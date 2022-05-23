@@ -12,10 +12,10 @@ int main(){
     matrix.add_connection(&Krakow_Warszawa);
     matrix.add_connection(&Warszawa_Gdynia);
     matrix.add_connection(&Wroclaw_Krakow);
-    
+
     FinderAlgorithm fa(matrix);
     // Test 1 creating FinderAlgorithm
-    
+
     // if(fa.get_connetions_matrix().get_size() != 6)
     //     std::cerr << "FA : Error in test 1\n";
 
@@ -25,7 +25,7 @@ int main(){
     fa.dijkstra_time(Krakow);
     for(int i=0; i<4; i++){
         if(fa.get_distance()[i] != exp_dist[i] || fa.get_previous()[i] != exp_prev[i]){
-            std::cerr << "FA : Error in test 2: got time and previous " << fa.get_distance()[i] << " and " 
+            std::cerr << "FA : Error in test 2: got time and previous " << fa.get_distance()[i] << " and "
             << fa.get_previous()[i] << " instead of " << exp_dist[i] << " and " << exp_prev[i] << std::endl;
         }
     }
@@ -35,7 +35,7 @@ int main(){
     fa.dijkstra_time(Gdynia);
     for(int i=0; i<4; i++){
         if(fa.get_distance()[i] != exp_dist[i] || fa.get_previous()[i] != exp_prev[i]){
-            std::cerr << "FA : Error in test 3: got time and previous " << fa.get_distance()[i] << " and " 
+            std::cerr << "FA : Error in test 3: got time and previous " << fa.get_distance()[i] << " and "
             << fa.get_previous()[i] << " instead of " << exp_dist[i] << " and " << exp_prev[i] << std::endl;
         }
     }
@@ -46,7 +46,7 @@ int main(){
     fa.dijkstra_cost(Krakow);
     for(int i=0; i<4; i++){
         if(fa.get_distance()[i] != exp_dist[i] || fa.get_previous()[i] != exp_prev[i]){
-            std::cerr << "FA : Error in test 4: got cost and previous " << fa.get_distance()[i] << " and " 
+            std::cerr << "FA : Error in test 4: got cost and previous " << fa.get_distance()[i] << " and "
             << fa.get_previous()[i] << " instead of " << exp_dist[i] << " and " << exp_prev[i] << std::endl;
         }
     }
@@ -57,7 +57,7 @@ int main(){
     fa.dijkstra_cost(Gdynia);
     for(int i=0; i<4; i++){
         if(fa.get_distance()[i] != exp_dist[i] || fa.get_previous()[i] != exp_prev[i]){
-            std::cerr << "FA : Error in test 5: got cost and previous " << fa.get_distance()[i] << " and " 
+            std::cerr << "FA : Error in test 5: got cost and previous " << fa.get_distance()[i] << " and "
             << fa.get_previous()[i] << " instead of " << exp_dist[i] << " and " << exp_prev[i] << std::endl;
         }
     }
@@ -68,7 +68,7 @@ int main(){
     fa.dijkstra_dist(Krakow);
     for(int i=0; i<4; i++){
         if(fa.get_distance()[i] != exp_dist[i] || fa.get_previous()[i] != exp_prev[i]){
-            std::cerr << "FA : Error in test 6: got cost and previous " << fa.get_distance()[i] << " and " 
+            std::cerr << "FA : Error in test 6: got cost and previous " << fa.get_distance()[i] << " and "
             << fa.get_previous()[i] << " instead of " << exp_dist[i] << " and " << exp_prev[i] << std::endl;
         }
     }
@@ -79,7 +79,7 @@ int main(){
     fa.dijkstra_dist(Gdynia);
     for(int i=0; i<4; i++){
         if(fa.get_distance()[i] != exp_dist[i] || fa.get_previous()[i] != exp_prev[i]){
-            std::cerr << "FA : Error in test 7: got cost and previous " << fa.get_distance()[i] << " and " 
+            std::cerr << "FA : Error in test 7: got cost and previous " << fa.get_distance()[i] << " and "
             << fa.get_previous()[i] << " instead of " << exp_dist[i] << " and " << exp_prev[i] << std::endl;
         }
     }
