@@ -102,6 +102,10 @@ DirectConnection * Matrix::operator()(City const& CityA, City const& CityB)
     return nullptr;
 }
 
+DirectConnection * Matrix::operator()(int i, int j){
+    return p[i][j];
+}
+
 Matrix::~Matrix()
 {
     delete p;
