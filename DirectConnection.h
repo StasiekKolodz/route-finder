@@ -2,19 +2,23 @@
 #include <iostream>
 #include <vector>
 #include "City.h"
+
+enum station_type {Bus, Train};
+
 class DirectConnection
 {
     protected:
+        station_type type;
         unsigned int connection_id;
         unsigned int distance;
         unsigned int cost;
         unsigned int time;
         City PlaceA;
         City PlaceB;
-    // mean_of_transport ??
     public:
         DirectConnection(unsigned int id, unsigned int d, unsigned int c,
-        unsigned int t, City PA, City PB) : connection_id(id), distance(d), cost(c), time(t), PlaceA(PA), PlaceB(PB)
+        unsigned int t, City const& PA, City const& PB, station_type type) :
+        connection_id(id), distance(d), cost(c), time(t), PlaceA(PA), PlaceB(PB), type(type)
         {
             if(PA == PB) throw "Place A and place B must be different";
         }
@@ -31,5 +35,6 @@ class DirectConnection
         bool operator!=(DirectConnection dc){
             return not(dc.get_connection_id() == connection_id);
         }
+        station_type get_type() const { return type; }
 
 };
