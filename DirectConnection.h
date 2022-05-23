@@ -3,7 +3,7 @@
 #include <vector>
 #include "City.h"
 
-enum station_type {BUS, TRAIN};
+enum station_type {Bus, Train};
 
 class DirectConnection
 {
@@ -17,7 +17,7 @@ class DirectConnection
         City PlaceB;
     public:
         DirectConnection(unsigned int id, unsigned int d, unsigned int c,
-        unsigned int t, City PA, City PB, station_type type) :
+        unsigned int t, City const& PA, City const& PB, station_type type) :
         connection_id(id), distance(d), cost(c), time(t), PlaceA(PA), PlaceB(PB), type(type)
         {}
         unsigned int get_connection_id() const { return connection_id; }

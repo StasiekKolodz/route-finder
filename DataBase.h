@@ -19,13 +19,16 @@ class DataBase
         DataBase();
 
         void update_data_base();
+        void add_direct_connection(DirectConnection const& dc)
+        { connections.push_back(dc);}
 
-        void create_cheapest_matrix(possible_type type = BOTH);
-        void create_fastest_matrix(possible_type type = BOTH);
-        void create_shortest_matrix(possible_type type = BOTH);
+        void create_cheapest_matrix(possible_type const& type);
+        void create_fastest_matrix(possible_type const& type);
+        void create_shortest_matrix(possible_type const& type);
 
         Matrix get_current_matrix() const { return current_matrix;}
         possible_type get_current_stations_type() const { return current_station_type;}
         possible_search_setting get_current_setting() const { return current_search_setting;}
 
+        // ~DataBase();
 };
