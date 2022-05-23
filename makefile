@@ -38,4 +38,4 @@ FinderAlgorithm_test.o: FinderAlgorithm_test.cpp
 	g++ -c FinderAlgorithm_test.cpp
 
 clean:
-	rm -f City.o Connection.o DirectConnection.o Matrix.o DataBase.o project_test.out execute_project_file.o RouteFinder.o  file_test.o file_test.out FinderAlgorithm.o FinderAlgorithm_test.o FinderAlgorithm_test.out
+	rm -f City.o Connection.o DirectConnection.o Matrix.o DataBase.o project_test.out execute_project_file.o RouteFinder.o file_test.o file_test.out FinderAlgorithm.o FinderAlgorithm_test.o FinderAlgorithm_test.out
