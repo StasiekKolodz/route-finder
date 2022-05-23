@@ -1,13 +1,14 @@
 #include "Matrix.h"
+#include <memory>
 
 Matrix::Matrix()
 {
     size = 0;
     p = new DirectConnection **[0];
-    for (int i = 0; i < size; i++)
-    {
-        p[i] = new DirectConnection *[0];
-    }
+    // for (int i = 0; i < size; i++)
+    // {
+    //     p[i] = new DirectConnection *[0];
+    // }
 }
 
 void Matrix::extend_matrix()
@@ -30,6 +31,11 @@ void Matrix::extend_matrix()
     }
     }
 
+    // for(int i = 0; i<size; i++)
+    // {
+    //     delete[] p[i];
+    // }
+
     delete p;
     p = temp_p;
     size++;
@@ -48,7 +54,20 @@ bool Matrix::isCity(City const& city) const
 void Matrix::add_connection(DirectConnection *cnt)
 {
     if(this->isCity(cnt->get_PlaceA()) && this->isCity(cnt->get_PlaceB()))
-        throw "Matrix already has that connection";
+    {
+        for(int i = 0; i < size; i++)
+        {
+        for(int j = 0; j < size; j++)
+        {
+            if(p[j][i]->get_PlaceA() == cnt->get_PlaceA() && p[j][i]->get_PlaceB() == cnt->get_PlaceB())
+            {
+                p[j][i]=cnt;
+                p[i][j]=cnt;
+                break;
+            }
+        }
+        }
+    }
     else if(this->isCity(cnt->get_PlaceA()))
     {
         this->extend_matrix();
@@ -90,13 +109,19 @@ DirectConnection * Matrix::operator()(City const& CityA, City const& CityB)
 {
     for(int i = 0 ; i < size ; i++)
     {
-    if(p[i][0]!=nullptr && (p[i][0]->get_PlaceA() == CityA || p[i][0]->get_PlaceB() == CityA))
+    if(p[i][0]!=nullptr)
+    {
+    if(p[i][0]->get_PlaceA() == CityA || p[i][0]->get_PlaceB() == CityA)
     {
         for(int j = 0; j < size ; j++)
         {
-            if(p[i][j]!=nullptr && (p[i][j]->get_PlaceA() == CityB || p[i][j]->get_PlaceB() == CityB))
+            if(p[i][j]!=nullptr)
+            {
+            if(p[i][j]->get_PlaceA() == CityB || p[i][j]->get_PlaceB() == CityB)
             {return p[i][j];}
+            }
         }
+    }
     }
     }
     return nullptr;
@@ -104,7 +129,20 @@ DirectConnection * Matrix::operator()(City const& CityA, City const& CityB)
 
 Matrix::~Matrix()
 {
-    delete p;
+    // for(int i = 0; i < size; i++)
+    // {
+    // for(int j=0; j < size; j++)
+    // {
+    //     delete p[i][j];
+    // }
+    // }
+
+    // for(int i = 0; i<size; i++)
+    // {
+    //     delete[] p[i];
+    // }
+
+    // delete p;
 }
 
 std::string Matrix::description() const
