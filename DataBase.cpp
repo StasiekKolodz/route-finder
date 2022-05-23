@@ -191,6 +191,7 @@ void DataBase::load_file()
         string nameB;
         bool isTrainB;
         bool isBusB;
+        station_type type;
 
         string tempString; //pusty string do zapisu atrybutow DirectConnection, ktore przekonwertujemy na int/double
 
@@ -254,10 +255,26 @@ void DataBase::load_file()
         }
         else isBusB = false;
 
+        tempString = "";
+
+        getline(inputString, tempString, ',');
+        if(tempString == "Bus")
+        {
+            type = Bus;
+        }
+        else if(tempString == "Train")
+        {
+            type = Train;
+        }
+        else
+        {
+            throw "Wrong type of station type. Only Bus or Train is acceptable";
+        }
+
         City PlaceA(nameA, isTrainA, isBusA);
         City PlaceB(nameB, isTrainB, isBusB);
 
-        DirectConnection connection(connection_id, distance, cost, time, PlaceA, PlaceB); //tworzenie obiektu DirectConnection
+        DirectConnection connection(connection_id, distance, cost, time, PlaceA, PlaceB, type); //tworzenie obiektu DirectConnection
 
         connections.push_back(connection); //dodanie obiektu do wektora połączeń
     }
