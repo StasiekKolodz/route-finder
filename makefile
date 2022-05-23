@@ -1,5 +1,5 @@
-execute_test: City.o Connection.o DirectConnection.o Matrix.o DataBase.o execute_project_file.o RouteFinder.o
-	g++ -o project_test.out City.o Connection.o DirectConnection.o Matrix.o DataBase.o execute_project_file.o RouteFinder.o
+execute_test: City.o Connection.o DirectConnection.o Matrix.o DataBase.o execute_project_file.o RouteFinder.o FinderAlgorithm.o
+	g++ -o project_test.out City.o Connection.o DirectConnection.o Matrix.o DataBase.o execute_project_file.o RouteFinder.o FinderAlgorithm.o
 
 execute_project_file.o: execute_project_file.cpp
 	g++ -c execute_project_file.cpp
@@ -11,6 +11,7 @@ RouteFinder.o: RouteFinder.h RouteFinder.cpp
 	g++ -c RouteFinder.cpp
 
 Connection.o: Connection.h Connection.cpp
+	g++ -c Connection.cpp
 
 DirectConnection.o: DirectConnection.h DirectConnection.cpp
 	g++ -c DirectConnection.cpp
@@ -24,6 +25,13 @@ file_test: file_test.o
 file_test.o: file_test.cpp
 	g++ -c file_test.cpp
 
+FinderAlgorithm_test: FinderAlgorithm_test.o City.o Connection.o DirectConnection.o Matrix.o DataBase.o FinderAlgorithm.o
+	g++ -o FinderAlgorithm_test.out FinderAlgorithm_test.o City.o Connection.o DirectConnection.o Matrix.o DataBase.o FinderAlgorithm.o
 
+FinderAlgorithm.o: FinderAlgorithm.h FinderAlgorithm.cpp
+	g++ -c FinderAlgorithm.cpp
+
+FinderAlgorithm_test.o: FinderAlgorithm_test.cpp
+	g++ -c FinderAlgorithm_test.cpp
 clean:
-	rm -f City.o Connection.o DirectConnection.o Matrix.o DataBase.o project_test.out execute_project_file.o RouteFinder.o
+	rm -f City.o Connection.o DirectConnection.o Matrix.o DataBase.o project_test.out execute_project_file.o RouteFinder.o  file_test.o file_test.out FinderAlgorithm.o FinderAlgorithm_test.o FinderAlgorithm_test.out
