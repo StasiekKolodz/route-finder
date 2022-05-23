@@ -1,7 +1,9 @@
 #include <iostream>
 #include "Matrix.h"
 #include "DataBase.h"
-#include "InteligentMatrix.h"
+#include <vector>
+
+using namespace std;
 
 int main()
 {
@@ -73,5 +75,26 @@ enum station_type {BUS, TRAIN};
     std::cerr << db.get_current_matrix().get_size();
 
 
+    //TESTY CSV
+
+    std::vector<DirectConnection> connections;
+    DataBase base(connections);
+    base.load_file();
+    for(auto connection : base.get_connections())
+    {
+        cout << "Id: " << connection.get_connection_id() << endl <<
+        "Distance: " << connection.get_distance() << endl <<
+        "Cost: " << connection.get_cost() << endl <<
+        "Time: " << connection.get_time() << endl <<
+        "From: " << connection.get_PlaceA().get_name() << "(" << connection.get_PlaceA().isTrainStation() <<
+        connection.get_PlaceA().isBusStation() << ")" << endl <<
+        "To: " <<  connection.get_PlaceB().get_name() << "(" << connection.get_PlaceB().isTrainStation() <<
+        connection.get_PlaceB().isBusStation() << ")" << endl;
+    }
+
+    if(base.get_connections().size() != 2)
+    {
+        cout << "test failed, adding objects was unsuccesfull" << endl;
+    }
     return 0;
 }

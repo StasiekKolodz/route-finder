@@ -23,6 +23,12 @@ DirectConnection.o: DirectConnection.h DirectConnection.cpp
 City.o: City.h City.cpp
 	g++ -g -c City.cpp
 
+file_test: file_test.o
+	g++ -o file_test.exe file_test.o
+
+file_test.o: file_test.cpp
+	g++ -c file_test.cpp
+
 
 clean:
 	rm -f City.o Connection.o DirectConnection.o Matrix.o DataBase.o project_test.out execute_project_file.o RouteFinder.o

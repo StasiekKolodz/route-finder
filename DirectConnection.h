@@ -20,6 +20,7 @@ class DirectConnection
         unsigned int t, City const& PA, City const& PB, station_type type) :
         connection_id(id), distance(d), cost(c), time(t), PlaceA(PA), PlaceB(PB), type(type)
         {}
+        // Obsługa błędu gdy PlaceA == PlaceB
         unsigned int get_connection_id() const { return connection_id; }
         unsigned int get_distance() const { return distance; }
         unsigned int get_cost() const { return cost; }

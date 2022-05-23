@@ -30,5 +30,16 @@ class DataBase
         possible_type get_current_stations_type() const { return current_station_type;}
         possible_search_setting get_current_setting() const { return current_search_setting;}
 
-        // ~DataBase();
+        DataBase(std::vector<DirectConnection> c)
+        {
+            connections = c;
+        }
+        void load_file();
+        std::vector<DirectConnection> get_connections()
+        {
+            return connections;
+        }
+        // Przeciążenie operatora []. Najlepiej kilka, np żeby dało się znaleźć miasto po nazwie
+
+            // ~DataBase();
 };
