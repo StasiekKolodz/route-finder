@@ -195,4 +195,6 @@ Connection FinderAlgorithm::generate_connection_setting(City const& PlaceA, City
     }
     else if(s_set == SHORTEST){
         return this->generate_connection_dist(PlaceA, PlaceB);
+    }
+    // Wyjątek dla enuma
 }
