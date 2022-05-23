@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include "DataBase.h"
+using namespace std;
+
 
 DataBase::DataBase()
 {}
@@ -166,7 +168,6 @@ void DataBase::create_shortest_matrix(possible_type const& type)
     }
 }
 
-using namespace std;
 
 void DataBase::load_file()
 {

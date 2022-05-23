@@ -3,7 +3,7 @@
 #include <vector>
 #include "City.h"
 #include "Route.h"
-enum station_type {Bus, Train};
+#include "enums.h"
 
 class DirectConnection : public Route
 {

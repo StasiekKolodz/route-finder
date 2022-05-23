@@ -2,12 +2,12 @@
 #include "Matrix.h"
 #include "DataBase.h"
 #include <vector>
+#include "enums.h"
 
 using namespace std;
 
 int main()
 {
-enum station_type {BUS, TRAIN};
 
     // TESTS OF MATRIX
 
@@ -72,7 +72,7 @@ enum station_type {BUS, TRAIN};
     // db.add_direct_connection(Wroclaw_Krakow_2);
 
     db.create_cheapest_matrix(BOTH);
-    std::cerr << db.get_current_matrix().get_size();
+    std::cerr << db.get_current_matrix().get_size() << endl;
 
 
     //TESTY CSV
@@ -86,10 +86,10 @@ enum station_type {BUS, TRAIN};
         "Distance: " << connection.get_distance() << endl <<
         "Cost: " << connection.get_cost() << endl <<
         "Time: " << connection.get_time() << endl <<
-        "From: " << connection.get_PlaceA().get_name() << "(" << connection.get_PlaceA().isTrainStation() <<
-        connection.get_PlaceA().isBusStation() << ")" << endl <<
-        "To: " <<  connection.get_PlaceB().get_name() << "(" << connection.get_PlaceB().isTrainStation() <<
-        connection.get_PlaceB().isBusStation() << ")" << endl;
+        "From: " << connection.get_PlaceA().get_name() << '(' << connection.get_PlaceA().isTrainStation() <<
+        connection.get_PlaceA().isBusStation() << ')' << endl <<
+        "To: " <<  connection.get_PlaceB().get_name() << '(' << connection.get_PlaceB().isTrainStation() <<
+        connection.get_PlaceB().isBusStation() << ')' << endl;
     }
 
     if(base.get_connections().size() != 2)
