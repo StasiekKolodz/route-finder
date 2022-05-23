@@ -6,9 +6,9 @@ int main(){
     City Warszawa("Warszawa", false, true);
     City Gdynia("Gdynia", false, true);
     City Wroclaw("Wroclaw", false, true);
-    DirectConnection Warszawa_Gdynia(2,250000,45,180,Warszawa,Gdynia);
-    DirectConnection Wroclaw_Krakow(3,250000,45,180,Wroclaw,Krakow);
-    DirectConnection Krakow_Warszawa(1,300000,80,240,Krakow,Warszawa);
+    DirectConnection Warszawa_Gdynia(2,250000,45,180,Warszawa,Gdynia,Bus);
+    DirectConnection Wroclaw_Krakow(3,250000,45,180,Wroclaw,Krakow,Bus);
+    DirectConnection Krakow_Warszawa(1,300000,80,240,Krakow,Warszawa,Bus);
     matrix.add_connection(&Krakow_Warszawa);
     matrix.add_connection(&Warszawa_Gdynia);
     matrix.add_connection(&Wroclaw_Krakow);
