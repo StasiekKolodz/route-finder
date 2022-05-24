@@ -145,8 +145,10 @@ Matrix::~Matrix()
     // {
     //     delete[] p[i];
     // }
-
-    // delete p;
+    if(p != nullptr){
+        std::cout << p << std::endl;
+    delete p;
+    }
 }
 
 std::string Matrix::description() const
