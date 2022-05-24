@@ -6,7 +6,7 @@
 
 class FinderAlgorithm
 {
-    private:
+    protected:
     Matrix connections_matrix;
     std::vector<int> distance;
     std::vector<int> previous;
@@ -22,8 +22,8 @@ class FinderAlgorithm
     bool is_used(City const& ct) const;
     City min_city_node() const;
     int find_city_index(City const& ct);
-    void dijkstra_dist(City const& PlaceA); 
-    void dijkstra_time(City const& PlaceA); 
+    void dijkstra_dist(City const& PlaceA);
+    void dijkstra_time(City const& PlaceA);
     void dijkstra_cost(City const& PlaceA);
     Connection generate_connection_time(City const& PlaceA, City const& PlaceB);
     Connection generate_connection_cost(City const& PlaceA, City const& PlaceB);
