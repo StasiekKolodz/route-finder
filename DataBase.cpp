@@ -278,5 +278,7 @@ void DataBase::load_file()
         DirectConnection connection(connection_id, distance, cost, time, PlaceA, PlaceB, type); //tworzenie obiektu DirectConnection
 
         connections.push_back(connection); //dodanie obiektu do wektora połączeń
+
+         file.close();
     }
 };
