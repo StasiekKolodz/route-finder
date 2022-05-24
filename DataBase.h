@@ -6,7 +6,7 @@
 
 class DataBase
 {
-    private:
+    protected:
         std::vector<DirectConnection> connections;
         std::vector<City> cities;
         Matrix current_matrix;
