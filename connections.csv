@@ -1,3 +1,13 @@
-ConnectionId,Distance,Cost,Time,CityA,isTrain,isBus,CityB,isTrain,isBus
-1,290.4,90,2.5,Krakow,True,True,Warszawa,True,False
-2,190,56,2.1,Tarnow,True,True,Radom,False,True
+ConnectionId,Distance,Cost,Time,CityA,isTrain,isBus,CityB,isTrain,isBus,Type
+1,290.4,90,2.5,Kraków,True,True,Warszawa,True,False,Train
+2,190,56,2.1,Tarnów,True,True,Radom,False,True,Bus
+3,190,56,2.1,Radom,True,True,Warszawa,False,True,Bus
+4,190,56,2.1,Płock,True,True,Radom,False,True,Bus
+5,190,56,2.1,Gdańsk,True,True,Warszawa,False,True,Bus
+6,190,56,2.1,Gdynia,True,True,Gdańsk,False,True,Bus
+7,190,56,2.1,Gdynia,True,True,Radom,False,True,Bus
+8,190,56,2.1,Kraków,True,True,Lublin,False,True,Bus
+9,190,56,2.1,Tarnów,True,True,Płock,False,True,Bus
+10,190,56,2.1,Łódź,True,True,Radom,False,True,Bus
+11,190,56,2.1,Łódź,True,True,Warszawa,False,True,Bus
+12,190,56,2.1,Łódź,True,True,Kutno,False,True,Bus

@@ -3,8 +3,171 @@
 #include <iostream>
 #include <vector>
 #include "DataBase.h"
-
 using namespace std;
+
+
+DataBase::DataBase()
+{}
+
+void DataBase::create_cheapest_matrix(possible_type const& type)
+{
+    current_station_type = type;
+    current_search_setting = CHEAPEST;
+    if(type == BOTH)
+    {
+    for(int i = 0; i < connections.size(); i++)
+    {
+        if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
+        {
+            current_matrix.add_connection(&connections[i]);
+        }
+        else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_cost() < connections[i].get_cost())
+        {
+            current_matrix.add_connection(&connections[i]);
+        }
+
+    }
+    }
+ else if(type == BUS)
+    {
+    for(auto dc : connections)
+    {
+        if((current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) != nullptr
+        && current_matrix(dc.get_PlaceA(), dc.get_PlaceB())->get_cost() < dc.get_cost())
+        && dc.get_type()==Bus)
+        {
+            current_matrix.add_connection(&dc);
+        }
+        else if(current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) == nullptr && dc.get_type()==Bus)
+        {
+            current_matrix.add_connection(&dc);
+        }
+    }
+    }
+    else
+    {
+    for(auto dc : connections)
+    {
+        if((current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) != nullptr
+        && current_matrix(dc.get_PlaceA(), dc.get_PlaceB())->get_cost() < dc.get_cost())
+        && dc.get_type()==Train)
+        {
+            current_matrix.add_connection(&dc);
+        }
+        else if(current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) == nullptr && dc.get_type()==Train)
+        {
+            current_matrix.add_connection(&dc);
+        }
+    }
+    }
+}
+
+void DataBase::create_fastest_matrix(possible_type const& type)
+{
+    current_station_type = type;
+    current_search_setting = FASTEST;
+    if(type == BOTH)
+    {
+    for(auto dc : connections)
+    {
+        if(current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) != nullptr
+        || current_matrix(dc.get_PlaceA(), dc.get_PlaceB())->get_time() < dc.get_time())
+        {
+            current_matrix.add_connection(&dc);
+        }
+        else if(current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) == nullptr)
+        {
+            current_matrix.add_connection(&dc);
+        }
+    }
+    }
+     else if(type == BUS)
+    {
+    for(auto dc : connections)
+    {
+        if((current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) != nullptr
+        || current_matrix(dc.get_PlaceA(), dc.get_PlaceB())->get_time() < dc.get_time())
+        && dc.get_type()==Bus)
+        {
+            current_matrix.add_connection(&dc);
+        }
+        else if(current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) == nullptr && dc.get_type()==Bus)
+        {
+            current_matrix.add_connection(&dc);
+        }
+    }
+    }
+    else
+    {
+    for(auto dc : connections)
+    {
+        if((current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) != nullptr
+        || current_matrix(dc.get_PlaceA(), dc.get_PlaceB())->get_time() < dc.get_time())
+        && dc.get_type()==Train)
+        {
+            current_matrix.add_connection(&dc);
+        }
+        else if(current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) == nullptr && dc.get_type()==Train)
+        {
+            current_matrix.add_connection(&dc);
+        }
+    }
+    }
+}
+
+void DataBase::create_shortest_matrix(possible_type const& type)
+{
+    current_station_type = type;
+    current_search_setting = SHORTEST;
+    if(type == BOTH)
+    {
+    for(auto dc : connections)
+    {
+        if(current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) != nullptr
+        || current_matrix(dc.get_PlaceA(), dc.get_PlaceB())->get_distance() < dc.get_distance())
+        {
+            current_matrix.add_connection(&dc);
+        }
+        else if(current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) == nullptr)
+        {
+            current_matrix.add_connection(&dc);
+        }
+    }
+    }
+    else if(type == BUS)
+    {
+    for(auto dc : connections)
+    {
+        if((current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) != nullptr
+        || current_matrix(dc.get_PlaceA(), dc.get_PlaceB())->get_distance() < dc.get_distance())
+        && dc.get_type()==Bus)
+        {
+            current_matrix.add_connection(&dc);
+        }
+        else if(current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) == nullptr && dc.get_type()==Bus)
+        {
+            current_matrix.add_connection(&dc);
+        }
+    }
+    }
+    else
+        {
+    for(auto dc : connections)
+    {
+        if((current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) != nullptr
+        || current_matrix(dc.get_PlaceA(), dc.get_PlaceB())->get_distance() < dc.get_distance())
+        && dc.get_type()==Train)
+        {
+            current_matrix.add_connection(&dc);
+        }
+        else if(current_matrix(dc.get_PlaceA(), dc.get_PlaceB()) == nullptr && dc.get_type()==Train)
+        {
+            current_matrix.add_connection(&dc);
+        }
+    }
+    }
+}
+
 
 void DataBase::load_file()
 {
@@ -29,6 +192,7 @@ void DataBase::load_file()
         string nameB;
         bool isTrainB;
         bool isBusB;
+        station_type type;
 
         string tempString; //pusty string do zapisu atrybutow DirectConnection, ktore przekonwertujemy na int/double
 
@@ -92,11 +256,29 @@ void DataBase::load_file()
         }
         else isBusB = false;
 
+        tempString = "";
+
+        getline(inputString, tempString, ',');
+        if(tempString == "Bus")
+        {
+            type = Bus;
+        }
+        else if(tempString == "Train")
+        {
+            type = Train;
+        }
+        else
+        {
+            throw "Wrong type of station type. Only Bus or Train is acceptable";
+        }
+
         City PlaceA(nameA, isTrainA, isBusA);
         City PlaceB(nameB, isTrainB, isBusB);
 
-        DirectConnection connection(connection_id, distance, cost, time, PlaceA, PlaceB); //tworzenie obiektu DirectConnection
+        DirectConnection connection(connection_id, distance, cost, time, PlaceA, PlaceB, type); //tworzenie obiektu DirectConnection
 
         connections.push_back(connection); //dodanie obiektu do wektora połączeń
+
+         file.close();
     }
-}
+};

@@ -2,20 +2,19 @@
 #include <iostream>
 #include <vector>
 #include "City.h"
-class DirectConnection
+#include "Route.h"
+#include "enums.h"
+
+class DirectConnection : public Route
 {
-    private:
-        unsigned int connection_id;
-        unsigned int distance;
-        unsigned int cost;
-        unsigned int time;
-        City PlaceA;
-        City PlaceB;
-    // mean_of_transport ??
+    protected:
+        station_type type;
     public:
         DirectConnection(unsigned int id, unsigned int d, unsigned int c,
-        unsigned int t, City PA, City PB) : connection_id(id), distance(d), cost(c), time(t), PlaceA(PA), PlaceB(PB)
-        {}
+        unsigned int t, City const& PA, City const& PB, station_type tp) : Route(id, d, c, t, PA, PB)
+        {
+            type = tp;
+        }
         // Obsługa błędu gdy PlaceA == PlaceB
         unsigned int get_connection_id() const { return connection_id; }
         unsigned int get_distance() const { return distance; }
@@ -23,5 +22,12 @@ class DirectConnection
         unsigned int get_time() const { return time; }
         City get_PlaceA() const { return PlaceA; }
         City get_PlaceB() const { return PlaceB; }
+        bool operator==(DirectConnection dc){
+            return dc.get_connection_id() == connection_id;
+        }
+        bool operator!=(DirectConnection dc){
+            return not(dc.get_connection_id() == connection_id);
+        }
+        station_type get_type() const { return type; }
 
 };
