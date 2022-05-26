@@ -1,8 +1,11 @@
 #pragma once
 #include <iostream>
 #include "Connection.h"
+<<<<<<< HEAD
+=======
 #include "FinderAlgorithm.h"
 #include "DataBase.h"
+>>>>>>> 80da386a13d16002d1e9f1910c244f814079b172
 
 class RouteFinder : public FinderAlgorithm, public DataBase
 {

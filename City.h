@@ -31,4 +31,5 @@ class City
     {
         return (this->name != other_city.name);
     }
+    friend std::ostream& operator<<(std::ostream& os, City const& ct);
 };
