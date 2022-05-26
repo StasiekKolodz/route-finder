@@ -146,7 +146,7 @@ Matrix::~Matrix()
     //     delete[] p[i];
     // }
     if(p != nullptr){
-        std::cout << p << std::endl;
+    p = nullptr;
     delete p;
     }
 }
