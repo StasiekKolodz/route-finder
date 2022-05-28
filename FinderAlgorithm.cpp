@@ -27,7 +27,7 @@ void FinderAlgorithm::set_connections_matrix(Matrix const& cm)
 }
 
 City FinderAlgorithm::min_city_node() const
-{   
+{
     int min_dist = INT_MAX;
     int min_idx = -1;
     int i =0;
@@ -61,7 +61,7 @@ bool FinderAlgorithm::is_used(City const& ct) const
     if(std::find(used.begin(), used.end(), ct) == used.end()) return false;
 
     return true;
-} 
+}
 
 Matrix FinderAlgorithm::get_connetions_matrix() const
 {
@@ -83,7 +83,7 @@ void FinderAlgorithm::dijkstra_time(City const& PlaceA)
                     distance[k] = distance[cur_idx] + connections_matrix(cur_idx, k)->get_time();
                     previous[k] = cur_idx;
                 }
-                
+
         }
     }
 }
@@ -103,7 +103,7 @@ void FinderAlgorithm::dijkstra_dist(City const& PlaceA)
                     distance[k] = distance[cur_idx] + connections_matrix(cur_idx, k)->get_distance();
                     previous[k] = cur_idx;
                 }
-                
+
         }
     }
 }
@@ -123,11 +123,11 @@ void FinderAlgorithm::dijkstra_cost(City const& PlaceA)
                     distance[k] = distance[cur_idx] + connections_matrix(cur_idx, k)->get_cost();
                     previous[k] = cur_idx;
                 }
-                
+
         }
     }
     for(auto v:distance){
-        if(v == INT_MAX) 
+        if(v == INT_MAX)
             v = -1;
     }
 }
@@ -164,7 +164,7 @@ Connection FinderAlgorithm::generate_connection_cost(City const& PlaceA, City co
 Connection FinderAlgorithm::generate_connection_dist(City const& PlaceA, City const& PlaceB)
 {
     this->dijkstra_dist(PlaceA);
-    return this->generate_connection(PlaceA, PlaceB);    
+    return this->generate_connection(PlaceA, PlaceB);
 }
 Connection FinderAlgorithm::generate_connection(City const& PlaceA, City const& PlaceB)
 {
@@ -196,5 +196,6 @@ Connection FinderAlgorithm::generate_connection_setting(City const& PlaceA, City
     else if(s_set == SHORTEST){
         return this->generate_connection_dist(PlaceA, PlaceB);
     }
-    // Wyjątek dla enuma
+    else
+        throw "Zły tym enum";
 }
