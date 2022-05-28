@@ -15,11 +15,8 @@ void DataBase::create_cheapest_matrix(possible_type const& type)
     current_search_setting = CHEAPEST;
     if(type == BOTH)
     {
-        cerr << connections.size();
     for(int i = 0; i < connections.size(); i++)
     {
-        cerr << "DUPA" << endl;
-        cerr << current_matrix.description();
         if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
         {
             current_matrix.add_connection(&connections[i]);

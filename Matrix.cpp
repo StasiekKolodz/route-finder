@@ -69,18 +69,19 @@ void Matrix::add_connection(DirectConnection *cnt)
 {
     if(this->isCity(cnt->get_PlaceA()) && this->isCity(cnt->get_PlaceB()))
     {
-        for(int i = 0; i < size; i++)
+        int i_to_assign;
+        int j_to_assign;
+
+        for(int i = 0; i<cites.size(); i++)
         {
-        for(int j = 0; j < size; j++)
-        {
-            if(p[j][i]->get_PlaceA() == cnt->get_PlaceA() && p[j][i]->get_PlaceB() == cnt->get_PlaceB())
-            {
-                p[j][i]=cnt;
-                p[i][j]=cnt;
-                break;
-            }
+            if(cites[i]==cnt->get_PlaceA())
+            i_to_assign = i;
+            else if(cites[i]==cnt->get_PlaceB())
+            j_to_assign = i;
         }
-        }
+        p[i_to_assign][j_to_assign] = cnt;
+        p[j_to_assign][i_to_assign] = cnt;
+
     }
     else if(this->isCity(cnt->get_PlaceA()))
     {
@@ -138,8 +139,8 @@ DirectConnection * Matrix::operator()(City const& CityA, City const& CityB)
     }
     }
     }
-    // return nullptr;
-    throw DCNotFoundException("DirectConnection not found in matrix", CityA, CityB);
+    return nullptr;
+    // throw DCNotFoundException("DirectConnection not found in matrix", CityA, CityB);
 }
 
 DirectConnection * Matrix::operator()(int i, int j){
@@ -151,20 +152,11 @@ DirectConnection * Matrix::operator()(int i, int j){
 
 Matrix::~Matrix()
 {
-    // for(int i = 0; i < size; i++)
-    // {
-    // for(int j=0; j < size; j++)
-    // {
-    //     delete p[i][j];
-    // }
-    // }
+    if(p!=nullptr)
+    p = nullptr;
 
-    // for(int i = 0; i<size; i++)
-    // {
-    //     delete[] p[i];
-    
     delete p;
-    
+
 }
 
 std::string Matrix::description() const
