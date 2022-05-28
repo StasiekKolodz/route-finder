@@ -26,6 +26,7 @@ void Connection::add_direct_conection(DirectConnection* dc)
 }
 
 
+// function to move information to stream
 std::ostream& operator<<(std::ostream& os, Connection const& cnt)
 {
     os << "Connection between " << cnt.get_PlaceA() << " and " << cnt.get_PlaceB() << std::endl;
@@ -33,13 +34,18 @@ std::ostream& operator<<(std::ostream& os, Connection const& cnt)
     os << "Cost: " << cnt.get_cost() << " zł" << std::endl;
     os << "Distance: " << cnt.get_distance()/1000 << " km" << std::endl;
     os << "There are changes in: ";
-    for(int i=1; i < cnt.changes_list.size() -1; i++){
+
+    for(int i=1; i < cnt.changes_list.size() -1; i++)
+    {
         os << cnt.changes_list[i] << " ";
     }
     os << std::endl;
+
     return os;
 }
 
+
+// function to directly print details to cout
 void Connection::print_connection_details()
 {
     std::cout << "Connection details: " << std::endl << std::endl;
@@ -49,7 +55,8 @@ void Connection::print_connection_details()
     std::cout << "Cost: " << cost << " zł" << std::endl;
     std::cout << "Distance: " << distance/1000 << " km" << std::endl;
     std::cout << "Parts od this connection:" << std::endl << std::endl;
-    for(auto& v:connection_elements){
+    for(auto& v:connection_elements)
+    {
         v->print_connection_details();
         std::cout << std::endl;
     }

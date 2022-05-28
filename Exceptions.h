@@ -3,13 +3,17 @@
 #include "DirectConnection.h"
 #include "enums.h"
 #include "City.h"
+
+// File with own exceptions using in program to throw
+
+
 struct MyException : public std::exception
 {
    std::string msg;
    MyException(std::string m) : msg(m) {}
-//    ~MyException() throw () {} // Updated
    const char* what() const throw() { return msg.c_str(); }
 };
+
 
 struct dcAlreadyAddedError : public std::exception
 {
@@ -23,6 +27,7 @@ struct dcAlreadyAddedError : public std::exception
 
 };
 
+
 struct StationTypeError : public std::exception
 {
    std::string msg;
@@ -35,6 +40,7 @@ struct StationTypeError : public std::exception
 
 };
 
+
 struct CityNotFoundException : public std::exception
 {
    std::string msg;
@@ -44,6 +50,7 @@ struct CityNotFoundException : public std::exception
    const char* what() const throw() { return msg.c_str(); }
    City what_passed_city() const {return passed_city;}
 };
+
 
 struct DCNotFoundException : public std::exception
 {
@@ -56,6 +63,7 @@ struct DCNotFoundException : public std::exception
    City what_PlaceA() const{return CA;}
    City what_PlaceB() const{return CB;}
 };
+
 
 struct ConnectionNotFoundException : public std::exception
 {
