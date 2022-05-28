@@ -1,5 +1,5 @@
 #include "FinderAlgorithm.h"
-
+#include "RouteFinder.h"
 int main(){
     Matrix matrix;
     City Krakow("Krakow", false, true);
@@ -12,6 +12,7 @@ int main(){
     matrix.add_connection(&Krakow_Warszawa);
     matrix.add_connection(&Warszawa_Gdynia);
     matrix.add_connection(&Wroclaw_Krakow);
+
 
     FinderAlgorithm fa(matrix);
     // Test 1 creating FinderAlgorithm
@@ -91,9 +92,25 @@ int main(){
 
     Connection my_cnt = fa.generate_connection_time(Krakow, Gdynia);
     std::vector<DirectConnection *> dcv = my_cnt.get_connection_elements();
-    std::cout << dcv[0]->get_time() << std::endl;
-    std::cout << dcv[1]->get_time() << std::endl;
+    // std::cout << dcv[0]->get_time() << std::endl;
+    // std::cout << dcv[1]->get_time() << std::endl;
 
+    // std::cout << Warszawa << std::endl;
+    // std::cout << Krakow_Warszawa << std::endl;
+    // std::cout << my_cnt << std::endl;
+    // Krakow_Warszawa.print_connection_details();
+    // my_cnt.print_connection_details();
+    RouteFinder rf;
+    rf.load_file();
+    try{
+    rf.create_cheapest_matrix(BOTH);
+    }
+    catch(DCNotFoundException e){
+        std::cout << e.what_PlaceA() << " , " << e.what_PlaceB() << std::endl;
+    }
+    rf.get_current_matrix().print_matrix();
+    // Connection cnt1 = rf.find_user_connection(Warszawa, Krakow, CHEAPEST, BOTH);
+    // std::cout << cnt1 << std::endl;
     std::cout << "End of tests\n";
 
     return 0;

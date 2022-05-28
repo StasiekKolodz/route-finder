@@ -11,6 +11,7 @@ class City
     public:
     City(std::string n, bool isTrain=false, bool isBus=false) : name(n), isTrain(isTrain), isBus(isBus)
     {}
+    City(){}
     // void add_conection(const& DirectConection dc);
     std::string get_name() const
     {return name;}

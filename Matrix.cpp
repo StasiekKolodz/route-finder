@@ -11,6 +11,20 @@ Matrix::Matrix()
     // }
 }
 
+Matrix::Matrix(Matrix const&  matrix_to_copy)
+{
+    p = matrix_to_copy.p;
+    size = matrix_to_copy.size;
+    cites = matrix_to_copy.cites;
+}
+
+Matrix & Matrix::operator=(Matrix const& matrix_to_assign)
+{
+    p = matrix_to_assign.p;
+    size = matrix_to_assign.size;
+    cites = matrix_to_assign.cites;
+    return *this;
+}
 void Matrix::extend_matrix()
 {
     DirectConnection ***temp_p = new DirectConnection **[size+1];
@@ -124,10 +138,14 @@ DirectConnection * Matrix::operator()(City const& CityA, City const& CityB)
     }
     }
     }
-    return nullptr;
+    // return nullptr;
+    throw DCNotFoundException("DirectConnection not found in matrix", CityA, CityB);
 }
 
 DirectConnection * Matrix::operator()(int i, int j){
+    if(i>this->get_size() || j > this->get_size()){
+        throw MyException("Matrix index out of range");
+    }
     return p[i][j];
 }
 
@@ -144,11 +162,9 @@ Matrix::~Matrix()
     // for(int i = 0; i<size; i++)
     // {
     //     delete[] p[i];
-    // }
-    if(p != nullptr){
-    p = nullptr;
+    
     delete p;
-    }
+    
 }
 
 std::string Matrix::description() const
@@ -170,4 +186,23 @@ std::string Matrix::description() const
     ss << std:: endl;
     }
     return ss.str();
+}
+
+void Matrix::print_matrix()
+{
+    for(int i = 0; i < size; i++)
+    {
+    for(int j = 0; j < size; j++)
+    {
+    if(p[i][j] != nullptr)
+    {
+        std:: cout << p[i][j]->get_connection_id() << " ";
+    }
+    else
+    {
+        std::cout << "NULL\t";
+    }
+    }
+    std::cout << std:: endl;
+    }
 }

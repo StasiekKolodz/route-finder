@@ -175,26 +175,25 @@ void DataBase::load_file()
     string line = ""; //string to put the data into
     getline(file, line); //getting rid of the header line
     line = "";
+    unsigned int connection_id;
+    unsigned int distance;
+    unsigned int cost;
+    unsigned int time;
+    string nameA;
+    string nameB;
+    station_type type;
+
+    string tempString; //pusty string do zapisu atrybutow DirectConnection, ktore przekonwertujemy na int/double
+
 
     while(getline(file, line))
     {
-        unsigned int connection_id;
-        unsigned int distance;
-        unsigned int cost;
-        unsigned int time;
-        string nameA;
-        string nameB;
-        station_type type;
-
-        string tempString; //pusty string do zapisu atrybutow DirectConnection, ktore przekonwertujemy na int/double
 
         stringstream inputString(line);
 
         getline(inputString, tempString, ','); //zapisywanie do tymczasowego stringa id stringa
         connection_id = atoi(tempString.c_str()); //konwercja stringa na inta
-
         tempString = ""; //czyszczenie chwilowego stringa
-
         getline(inputString, tempString, ',');
         distance = atoi(tempString.c_str());
 
@@ -227,7 +226,7 @@ void DataBase::load_file()
         }
         else
         {
-            throw "Wrong type of station type. Only Bus or Train is acceptable";
+            throw StationTypeError("Wrong type of station type. Only Bus or Train is acceptable", tempString);
         }
 
         vector<City> places = city_using_info(nameA, nameB, type);

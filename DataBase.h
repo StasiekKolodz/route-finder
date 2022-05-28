@@ -47,5 +47,4 @@ class DataBase
         // Przeciążenie operatora []. Najlepiej kilka, np żeby dało się znaleźć miasto po nazwie
 
             // ~DataBase();
-
 };

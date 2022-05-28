@@ -28,8 +28,8 @@ file_test: file_test.o
 file_test.o: file_test.cpp
 	g++ -c file_test.cpp
 
-FinderAlgorithm_test: FinderAlgorithm_test.o City.o Connection.o DirectConnection.o Matrix.o DataBase.o FinderAlgorithm.o
-	g++ -o FinderAlgorithm_test.out FinderAlgorithm_test.o City.o Connection.o DirectConnection.o Matrix.o DataBase.o FinderAlgorithm.o
+FinderAlgorithm_test: FinderAlgorithm_test.o City.o Connection.o DirectConnection.o Matrix.o DataBase.o FinderAlgorithm.o RouteFinder.o
+	g++ -o FinderAlgorithm_test.out FinderAlgorithm_test.o City.o Connection.o DirectConnection.o Matrix.o DataBase.o FinderAlgorithm.o RouteFinder.o
 
 FinderAlgorithm.o: FinderAlgorithm.h FinderAlgorithm.cpp
 	g++ -c FinderAlgorithm.cpp

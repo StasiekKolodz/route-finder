@@ -13,6 +13,8 @@ private:
 
 public:
     Matrix();
+    Matrix(Matrix const& matrix_to_copy);
+    Matrix & operator=(Matrix const& matrix_to_assign);
     void add_connection(DirectConnection *cnt);
     bool isCity(City const& city) const;
     DirectConnection* operator()(City const& CityA, City const& CityB);
@@ -29,6 +31,10 @@ public:
     std::string description() const;
 
     ~Matrix();
+    DirectConnection***get_p(){
+        return p;
+    }
+    void print_matrix();
 };
 
 
