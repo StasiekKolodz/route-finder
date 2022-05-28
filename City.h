@@ -19,10 +19,8 @@ class City
     {return isBus;}
     bool isTrainStation() const
     {return isTrain;}
-    void setTrainStation(bool)
-    {}
-    void setBusStation(bool)
-    {}
+    void setTrainStation(bool const& b){ isTrain = b; }
+    void setBusStation(bool const& b) { isBus = b; }
     bool operator==(City const& other_city) const
     {
         return (this->name == other_city.name);
