@@ -14,3 +14,5 @@ ConnectionId,Distance,Cost,Time,CityA,CityB,Type
 13,19000,34,180,Zakopanem,Tarnów,Train
 14,19400,52,95,Wrocław,Katowice,Train
 15,34700,82,235,Wrocław,Warszawa,Train
+16,200,20,120,Radom,Płock,Train
+17,200,20,120,Sopot,Świnioujście,Train
