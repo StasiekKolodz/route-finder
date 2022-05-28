@@ -35,6 +35,8 @@ public:
         return p;
     }
     void print_matrix();
+
+    void clean();
 };
 
 

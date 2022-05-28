@@ -10,7 +10,7 @@ class Route
     City PlaceA;
     City PlaceB;
     public:
-    Route(unsigned int id, unsigned int d, unsigned int c, 
+    Route(unsigned int id, unsigned int d, unsigned int c,
     unsigned int t, City const& PA, City const& PB):connection_id(id), distance(d), cost(c), time(t), PlaceA(PA), PlaceB(PB){
         if(PA == PB) throw MyException("Place A and place B must be different");
     }
@@ -21,5 +21,7 @@ class Route
     unsigned int get_time() const { return time; }
     City get_PlaceA() const { return PlaceA; }
     City get_PlaceB() const { return PlaceB; }
+    City& get_modifable_PlaceA() { return PlaceA; }
+    City& get_modifable_PlaceB() { return PlaceB; }
 
 };

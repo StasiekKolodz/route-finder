@@ -11,6 +11,7 @@ DataBase::DataBase()
 
 void DataBase::create_cheapest_matrix(possible_type const& type)
 {
+    current_matrix.clean();
     current_station_type = type;
     current_search_setting = CHEAPEST;
     if(type == BOTH)
@@ -34,10 +35,11 @@ void DataBase::create_cheapest_matrix(possible_type const& type)
     {
         if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
         {
+            if(connections[i].get_type() == Bus)
             current_matrix.add_connection(&connections[i]);
         }
         else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_cost() < connections[i].get_cost()
-        && connections[i].get_type()==Bus)
+        && connections[i].get_type( ) == Bus)
         {
             current_matrix.add_connection(&connections[i]);
         }
@@ -49,6 +51,7 @@ void DataBase::create_cheapest_matrix(possible_type const& type)
     {
         if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
         {
+            if(connections[i].get_type() == Train)
             current_matrix.add_connection(&connections[i]);
         }
         else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_cost() < connections[i].get_cost()
@@ -62,6 +65,7 @@ void DataBase::create_cheapest_matrix(possible_type const& type)
 
 void DataBase::create_fastest_matrix(possible_type const& type)
 {
+    current_matrix.clean();
     current_station_type = type;
     current_search_setting = FASTEST;
     if(type == BOTH)
@@ -84,6 +88,7 @@ void DataBase::create_fastest_matrix(possible_type const& type)
     {
         if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
         {
+            if(connections[i].get_type() == Bus)
             current_matrix.add_connection(&connections[i]);
         }
         else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_time() < connections[i].get_time()
@@ -99,6 +104,7 @@ void DataBase::create_fastest_matrix(possible_type const& type)
     {
         if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
         {
+            if(connections[i].get_type() == Train)
             current_matrix.add_connection(&connections[i]);
         }
         else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_time() < connections[i].get_time()
@@ -108,10 +114,12 @@ void DataBase::create_fastest_matrix(possible_type const& type)
         }
     }
     }
+
 }
 
 void DataBase::create_shortest_matrix(possible_type const& type)
 {
+    current_matrix.clean();
     current_station_type = type;
     current_search_setting = SHORTEST;
     if(type == BOTH)
@@ -134,6 +142,8 @@ void DataBase::create_shortest_matrix(possible_type const& type)
     {
         if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
         {
+            if(connections[i].get_type() == Bus)
+
             current_matrix.add_connection(&connections[i]);
         }
         else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_distance() < connections[i].get_distance()
@@ -143,12 +153,13 @@ void DataBase::create_shortest_matrix(possible_type const& type)
         }
     }
     }
-    else
+    else if(type == TRAIN)
         {
     for(int i = 0; i < connections.size(); i++)
     {
         if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
         {
+            if(connections[i].get_type() == Train)
             current_matrix.add_connection(&connections[i]);
         }
         else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_distance() < connections[i].get_distance()

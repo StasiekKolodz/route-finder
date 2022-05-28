@@ -177,6 +177,8 @@ Connection FinderAlgorithm::generate_connection(City const& PlaceA, City const& 
     while(cur_idx != Aidx){
         path.insert(path.begin(), cur_idx);
         cur_idx = previous[cur_idx];
+        if(cur_idx == -1)
+        throw ConnectionNotFoundException("There aren't any connection with type you choose",PlaceA, PlaceB);
     }
     path.insert(path.begin(), Aidx);
     for(int i=0; i<path.size()-1; i++){

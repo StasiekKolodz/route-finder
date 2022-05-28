@@ -56,3 +56,15 @@ struct DCNotFoundException : public std::exception
    City what_PlaceA() const{return CA;}
    City what_PlaceB() const{return CB;}
 };
+
+struct ConnectionNotFoundException : public std::exception
+{
+   City CA;
+   City CB;
+   std::string msg;
+   ConnectionNotFoundException(std::string m) : msg(m) {}
+   ConnectionNotFoundException(std::string m, City const& CtA, City const& CtB):msg(m), CA(CtA), CB(CtB){}
+   const char* what() const throw() { return msg.c_str(); }
+   City what_PlaceA() const{return CA;}
+   City what_PlaceB() const{return CB;}
+};

@@ -15,9 +15,9 @@ ConnectionId,Distance,Cost,Time,CityA,CityB,Type
 14,194000,52,95,Wrocław,Katowice,Train
 15,347000,82,235,Wrocław,Warszawa,Train
 16,2000,20,120,Radom,Płock,Train
-17,2000,20,120,Sopot,Świnioujście,Train
+17,2000,20,120,Sopot,Świnoujście,Train
 18,172000,90,30,Lublin,Warszawa,Train
-19,309000,300,80,Lublin,Krakow,Bus
+19,309000,300,80,Lublin,Kraków,Bus
 20,350000,420,90,Lublin,Katowice,Bus
 21,189000,180,50,Lublin,Kielce,Train
 22,113000,210,45,Lublin,Radom,Bus

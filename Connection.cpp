@@ -1,32 +1,30 @@
 #include "Connection.h"
 #include <algorithm>
 
+//method to adding direcect connection to list
 void Connection::add_direct_conection(DirectConnection* dc)
 {
-    if(std::find(connection_elements.begin(), connection_elements.end(), dc) != connection_elements.end()){
+    if(std::find(connection_elements.begin(), connection_elements.end(), dc) != connection_elements.end())
+    {
         throw dcAlreadyAddedError("Connection already added to connection_elements", dc->get_connection_id());
     }
+
     connection_elements.push_back(dc);
-    if(std::find(changes_list.begin(), changes_list.end(), dc->get_PlaceA()) == changes_list.end()){
+
+    if(std::find(changes_list.begin(), changes_list.end(), dc->get_PlaceA()) == changes_list.end())
+    {
         changes_list.push_back(dc->get_PlaceA());
     }
-    if(std::find(changes_list.begin(), changes_list.end(), dc->get_PlaceB()) == changes_list.end()){
+    if(std::find(changes_list.begin(), changes_list.end(), dc->get_PlaceB()) == changes_list.end())
+    {
         changes_list.push_back(dc->get_PlaceB());
     }
+
     distance += dc->get_distance();
     cost += dc->get_cost();
     time += dc->get_time();
 }
 
-void Connection::set_id(unsigned int id)
-{
-    connection_id = id;
-}
-
-std::vector<DirectConnection *> Connection::get_connection_elements() const
-{
-    return connection_elements;
-}
 
 std::ostream& operator<<(std::ostream& os, Connection const& cnt)
 {
