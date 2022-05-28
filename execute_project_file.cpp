@@ -3,6 +3,7 @@
 #include "DataBase.h"
 #include <vector>
 #include "enums.h"
+#include "RouteFinder.h"
 
 using namespace std;
 
@@ -82,19 +83,34 @@ int main()
     base.load_file();
     for(auto connection : base.get_connections())
     {
-        cout << "Id: " << connection.get_connection_id() << endl <<
-        "Distance: " << connection.get_distance() << endl <<
-        "Cost: " << connection.get_cost() << endl <<
-        "Time: " << connection.get_time() << endl <<
-        "From: " << connection.get_PlaceA().get_name() << '(' << connection.get_PlaceA().isTrainStation() <<
-        connection.get_PlaceA().isBusStation() << ')' << endl <<
-        "To: " <<  connection.get_PlaceB().get_name() << '(' << connection.get_PlaceB().isTrainStation() <<
-        connection.get_PlaceB().isBusStation() << ')' << endl;
+        connection.print_connection_details();
+        cout << endl;
     }
 
-    if(base.get_connections().size() != 2)
+
+    // base.add_direct_connection(200,20,120,"Sopot","Świnioujście",Train);
+
+    base.update_data_base();
+
+    for(auto c : base.get_cities())
     {
-        cout << "test failed, adding objects was unsuccesfull" << endl;
+        cout << c.get_name() << "(" <<c.isTrainStation()<< "," << c.isBusStation() << ")" << endl;
     }
-    return 0;
+
+    base.create_cheapest_matrix(BOTH);
+    base.get_current_matrix().description();
+    // base.create_cheapest_matrix(BUS);
+    // base.create_cheapest_matrix(TRAIN);
+    // base.create_fastest_matrix(BOTH);
+    // base.create_fastest_matrix(BUS);
+    // base.create_fastest_matrix(TRAIN);
+    // base.create_shortest_matrix(BOTH);
+    // base.create_shortest_matrix(BUS);
+    // base.create_shortest_matrix(TRAIN);
+
+    // RouteFinder rf;
+    // rf.load_file();
+    // cout << endl;
+    // rf.find_user_connection(base.get_cities()[1], base.get_cities()[3], SHORTEST, BOTH);
+
 }

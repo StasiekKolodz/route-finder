@@ -5,6 +5,7 @@ class Connection : public Route
 {
     private:
     std::vector<DirectConnection*> connection_elements;
+    std::vector<City> changes_list;
     // unsigned int total_time;
     // unsigned int total_distance;
     // unsigned int total_cost;
@@ -19,4 +20,6 @@ class Connection : public Route
     // unsigned int get_total_distance() const { return total_distance;}
     // unsigned int get_total_cost() const { return total_cost;}
     // funkcje set_total_time albo add_time
+    friend std::ostream& operator<<(std::ostream& os, Connection const& cnt);
+    void print_connection_details();
 };
