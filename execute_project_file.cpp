@@ -98,19 +98,18 @@ int main()
     }
 
     base.create_cheapest_matrix(BOTH);
-    base.get_current_matrix().description();
-    // base.create_cheapest_matrix(BUS);
-    // base.create_cheapest_matrix(TRAIN);
-    // base.create_fastest_matrix(BOTH);
-    // base.create_fastest_matrix(BUS);
-    // base.create_fastest_matrix(TRAIN);
-    // base.create_shortest_matrix(BOTH);
-    // base.create_shortest_matrix(BUS);
-    // base.create_shortest_matrix(TRAIN);
+    // base.get_current_matrix().description();
+    base.create_cheapest_matrix(BUS);
+    base.create_cheapest_matrix(TRAIN);
+    base.create_fastest_matrix(BOTH);
+    base.create_fastest_matrix(BUS);
+    base.create_fastest_matrix(TRAIN);
+    base.create_shortest_matrix(BOTH);
+    base.create_shortest_matrix(BUS);
+    base.create_shortest_matrix(TRAIN);
 
-    // RouteFinder rf;
-    // rf.load_file();
-    // cout << endl;
-    // rf.find_user_connection(base.get_cities()[1], base.get_cities()[3], SHORTEST, BOTH);
+    RouteFinder rf;
+    cout << endl;
+    cout << rf.find_user_connection(base.get_cities()[2], base.get_cities()[10], SHORTEST, BOTH);
 
 }
