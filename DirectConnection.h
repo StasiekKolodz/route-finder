@@ -31,5 +31,5 @@ class DirectConnection : public Route
         station_type get_type() const { return type; }
 
         friend std::ostream& operator<<(std::ostream& os, DirectConnection const& dc);
-        void print_connection_details();
+        virtual void print_connection_details();
 };

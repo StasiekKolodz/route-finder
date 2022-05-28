@@ -20,7 +20,6 @@ class DataBase
         void update_data_base();
         void add_direct_connection(DirectConnection const& dc)
         { connections.push_back(dc);}
-
         void create_cheapest_matrix(possible_type const& type);
         void create_fastest_matrix(possible_type const& type);
         void create_shortest_matrix(possible_type const& type);
@@ -41,4 +40,10 @@ class DataBase
         // Przeciążenie operatora []. Najlepiej kilka, np żeby dało się znaleźć miasto po nazwie
 
             // ~DataBase();
+        std::vector<DirectConnection> get_connections_vector() const{return connections;}
+        void print_connections()const{
+                for(int i=0; i<connections.size();i++){
+                    std::cout << connections[i] << std::endl;
+                }
+            }
 };

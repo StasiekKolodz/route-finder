@@ -39,7 +39,7 @@ City FinderAlgorithm::min_city_node() const
         i++;
     }
     if(min_idx == -1){
-        throw "All cities are already used";
+        throw CityNotFoundException("All cities are already used");
     }
     return cities[min_idx];
 }
@@ -53,7 +53,7 @@ int FinderAlgorithm::find_city_index(City const& ct)
         }
         city_index++;
     }
-    throw "City not found in connections matrix";
+    throw CityNotFoundException("City not found in connections matrix");
 }
 
 bool FinderAlgorithm::is_used(City const& ct) const

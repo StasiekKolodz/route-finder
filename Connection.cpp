@@ -4,7 +4,7 @@
 void Connection::add_direct_conection(DirectConnection* dc)
 {
     if(std::find(connection_elements.begin(), connection_elements.end(), dc) != connection_elements.end()){
-        throw "Connection already added to connection_elements";
+        throw dcAlreadyAddedError("Connection already added to connection_elements", dc->get_connection_id());
     }
     connection_elements.push_back(dc);
     if(std::find(changes_list.begin(), changes_list.end(), dc->get_PlaceA()) == changes_list.end()){

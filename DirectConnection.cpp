@@ -14,7 +14,7 @@ std::ostream& operator<<(std::ostream& os, DirectConnection const& dc)
 void DirectConnection::print_connection_details()
 {
     std::string station_tp[2] = {"Bus", "Train"};
-    std::cout << "Connection ID: " << connection_id << std::endl;
+    std::cout << "Direct connection ID: " << connection_id << std::endl;
     std::cout << "PlaceA: " << PlaceA << std::endl;
     std::cout << "PlaceB: " << PlaceB << std::endl;
     std::cout << "Time: " << time/60 << ":" << time%60 << std::endl;

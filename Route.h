@@ -1,5 +1,5 @@
 #include "City.h"
-
+#include "Exceptions.h"
 class Route
 {
     protected:
@@ -12,7 +12,7 @@ class Route
     public:
     Route(unsigned int id, unsigned int d, unsigned int c, 
     unsigned int t, City const& PA, City const& PB):connection_id(id), distance(d), cost(c), time(t), PlaceA(PA), PlaceB(PB){
-        if(PA == PB) throw "Place A and place B must be different";
+        if(PA == PB) throw MyException("Place A and place B must be different");
     }
     virtual void print_connection_details() = 0;
     unsigned int get_connection_id() {return connection_id; }
