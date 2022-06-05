@@ -31,7 +31,7 @@ void FinderAlgorithm::set_connections_matrix(Matrix const& cm)
 }
 
 
-// -------------------------------
+// finding unused city with lowest graph distance value
 City FinderAlgorithm::min_city_node() const
 {
     int min_dist = INT_MAX;

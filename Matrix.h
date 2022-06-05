@@ -27,7 +27,7 @@ public:
     //operators
     Matrix & operator=(Matrix const& matrix_to_assign);
     DirectConnection* operator()(City const& CityA, City const& CityB);
-    DirectConnection* operator()(unsigned int i, unsigned int j);
+    DirectConnection* operator()(int i, int j);
 
 
     void add_connection(DirectConnection *cnt);
@@ -46,5 +46,3 @@ public:
     // DirectConnection***get_p(){return p;}
 
 };
-
-

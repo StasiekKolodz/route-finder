@@ -34,7 +34,9 @@ std::ostream& operator<<(std::ostream& os, Connection const& cnt)
     os << "Cost: " << cnt.get_cost() << " zł" << std::endl;
     os << "Distance: " << cnt.get_distance()/1000 << " km" << std::endl;
     os << "There are changes in: ";
-    for(unsigned int i=1; i < cnt.changes_list.size() -1; i++){
+
+    for(int i=1; i < cnt.changes_list.size() -1; i++)
+    {
         os << cnt.changes_list[i] << " ";
     }
     os << std::endl;

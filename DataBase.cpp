@@ -15,73 +15,46 @@ void DataBase::create_cheapest_matrix(possible_type const& type)
 
     if(type == BOTH)
     {
-<<<<<<< HEAD
-        cerr << connections.size();
-    for(unsigned int i = 0; i < connections.size(); i++)
-    {
-        cerr << "DUPA" << endl;
-        cerr << current_matrix.description();
-        if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
-        {
-            current_matrix.add_connection(&connections[i]);
-        }
-        else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_cost() < connections[i].get_cost())
-=======
-        for(int i = 0; i < connections.size(); i++)
->>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
                 current_matrix.add_connection(&connections[i]);
             }
-            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_cost() < connections[i].get_cost())
+            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_cost() > connections[i].get_cost())
             {
                 current_matrix.add_connection(&connections[i]);
             }
         }
     }
-<<<<<<< HEAD
-    }
- else if(type == BUS)
-    {
-    for(unsigned int i = 0; i < connections.size(); i++)
-=======
 
     else if(type == BUS)
->>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
                 if(connections[i].get_type() == Bus)
                 current_matrix.add_connection(&connections[i]);
             }
-            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_cost() < connections[i].get_cost()
+            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_cost() > connections[i].get_cost()
             && connections[i].get_type( ) == Bus)
             {
                 current_matrix.add_connection(&connections[i]);
             }
         }
     }
-<<<<<<< HEAD
-    }
-    else
-    {
-    for(unsigned int i = 0; i < connections.size(); i++)
-=======
 
     else if(type == TRAIN)
->>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
                 if(connections[i].get_type() == Train)
                 current_matrix.add_connection(&connections[i]);
             }
-            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_cost() < connections[i].get_cost()
+            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_cost() > connections[i].get_cost()
             && connections[i].get_type()==Train)
             {
                 current_matrix.add_connection(&connections[i]);
@@ -104,19 +77,13 @@ void DataBase::create_fastest_matrix(possible_type const& type)
 
     if(type == BOTH)
     {
-<<<<<<< HEAD
-    for(unsigned int i = 0; i < connections.size(); i++)
-    {
-        if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
-=======
-        for(int i = 0; i < connections.size(); i++)
->>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
                 current_matrix.add_connection(&connections[i]);
             }
-            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_time() < connections[i].get_time())
+            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_time() > connections[i].get_time())
             {
                 current_matrix.add_connection(&connections[i]);
             }
@@ -125,49 +92,31 @@ void DataBase::create_fastest_matrix(possible_type const& type)
 
      else if(type == BUS)
     {
-<<<<<<< HEAD
-    for(unsigned int i = 0; i < connections.size(); i++)
-    {
-        if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
-        {
-            current_matrix.add_connection(&connections[i]);
-        }
-        else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_time() < connections[i].get_time()
-        && connections[i].get_type() == Bus)
-=======
-        for(int i = 0; i < connections.size(); i++)
->>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
                 if(connections[i].get_type() == Bus)
                 current_matrix.add_connection(&connections[i]);
             }
-            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_time() < connections[i].get_time()
+            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_time() > connections[i].get_time()
             && connections[i].get_type() == Bus)
             {
                 current_matrix.add_connection(&connections[i]);
             }
         }
     }
-<<<<<<< HEAD
-    }
-    else
-    {
-    for(unsigned int i = 0; i < connections.size(); i++)
-=======
 
     else if(type == TRAIN)
->>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
                 if(connections[i].get_type() == Train)
                 current_matrix.add_connection(&connections[i]);
             }
-            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_time() < connections[i].get_time()
+            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_time() > connections[i].get_time()
             && connections[i].get_type() == Train)
             {
                 current_matrix.add_connection(&connections[i]);
@@ -190,47 +139,22 @@ void DataBase::create_shortest_matrix(possible_type const& type)
 
     if(type == BOTH)
     {
-<<<<<<< HEAD
-    for(unsigned int i = 0; i < connections.size(); i++)
-    {
-        if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
-        {
-            current_matrix.add_connection(&connections[i]);
-        }
-        else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_distance() < connections[i].get_distance())
-        {
-            current_matrix.add_connection(&connections[i]);
-        }
-    }
-=======
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
             {
                 if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
                 {
                     current_matrix.add_connection(&connections[i]);
                 }
-                else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_distance() < connections[i].get_distance())
+                else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_distance() > connections[i].get_distance())
                 {
                     current_matrix.add_connection(&connections[i]);
                 }
             }
->>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
     }
 
     else if(type == BUS)
     {
-<<<<<<< HEAD
-    for(unsigned int i = 0; i < connections.size(); i++)
-    {
-        if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
-        {
-            current_matrix.add_connection(&connections[i]);
-        }
-        else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_distance() < connections[i].get_distance()
-        && connections[i].get_type() == Bus)
-=======
-        for(int i = 0; i < connections.size(); i++)
->>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
@@ -238,31 +162,24 @@ void DataBase::create_shortest_matrix(possible_type const& type)
 
                 current_matrix.add_connection(&connections[i]);
             }
-            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_distance() < connections[i].get_distance()
+            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_distance() > connections[i].get_distance()
             && connections[i].get_type() == Bus)
             {
                 current_matrix.add_connection(&connections[i]);
             }
         }
     }
-<<<<<<< HEAD
-    }
-    else
-        {
-    for(unsigned int i = 0; i < connections.size(); i++)
-=======
 
     else if(type == TRAIN)
->>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
                 if(connections[i].get_type() == Train)
                 current_matrix.add_connection(&connections[i]);
             }
-            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_distance() < connections[i].get_distance()
+            else if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB())->get_distance() > connections[i].get_distance()
             && connections[i].get_type() == Train)
             {
                 current_matrix.add_connection(&connections[i]);
