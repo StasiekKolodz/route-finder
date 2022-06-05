@@ -100,15 +100,15 @@ int main(){
     // std::cout << my_cnt << std::endl;
     // Krakow_Warszawa.print_connection_details();
     // my_cnt.print_connection_details();
-    RouteFinder rf;
-    rf.load_file();
-    try{
-    rf.create_cheapest_matrix(BOTH);
-    }
-    catch(DCNotFoundException e){
-        std::cout << e.what_PlaceA() << " , " << e.what_PlaceB() << std::endl;
-    }
-    rf.get_current_matrix().print_matrix();
+    // RouteFinder rf;
+    // rf.load_file();
+    // try{
+    // rf.create_cheapest_matrix(BOTH);
+    // }
+    // catch(DCNotFoundException e){
+    //     std::cout << e.what_PlaceA() << " , " << e.what_PlaceB() << std::endl;
+    // }
+    // rf.get_current_matrix().print_matrix();
     // Connection cnt1 = rf.find_user_connection(Warszawa, Krakow, CHEAPEST, BOTH);
     // std::cout << cnt1 << std::endl;
     std::cout << "End of tests\n";

@@ -179,7 +179,7 @@ Connection FinderAlgorithm::generate_connection(City const& PlaceA, City const& 
         cur_idx = previous[cur_idx];
     }
     path.insert(path.begin(), Aidx);
-    for(int i=0; i<path.size()-1; i++){
+    for(unsigned int i=0; i<path.size()-1; i++){
         ret_connection.add_direct_conection(connections_matrix(path[i], path[i+1]));
     }
     return ret_connection;

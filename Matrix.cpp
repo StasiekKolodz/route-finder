@@ -28,18 +28,18 @@ Matrix & Matrix::operator=(Matrix const& matrix_to_assign)
 void Matrix::extend_matrix()
 {
     DirectConnection ***temp_p = new DirectConnection **[size+1];
-    for (int i = 0; i < size+1; i++)
+    for (unsigned int i = 0; i < size+1; i++)
     {
         temp_p[i] = new DirectConnection *[size+1];
-        for (int j = 0; j < size+1 ; j++)
+        for (unsigned int j = 0; j < size+1 ; j++)
         {
                 temp_p[i][j] = nullptr;
         }
     }
 
-    for(int i = 0; i<size;i++)
+    for(unsigned int i = 0; i<size;i++)
     {
-    for(int j=0; j<size;j++)
+    for(unsigned int j=0; j<size;j++)
     {
         temp_p[i][j] = p[i][j];
     }
@@ -57,7 +57,7 @@ void Matrix::extend_matrix()
 
 bool Matrix::isCity(City const& city) const
 {
-    for(int i = 0; i<size; i++)
+    for(unsigned int i = 0; i<size; i++)
     {
         if(cites[i] == city)
         return true;
@@ -69,9 +69,9 @@ void Matrix::add_connection(DirectConnection *cnt)
 {
     if(this->isCity(cnt->get_PlaceA()) && this->isCity(cnt->get_PlaceB()))
     {
-        for(int i = 0; i < size; i++)
+        for(unsigned int i = 0; i < size; i++)
         {
-        for(int j = 0; j < size; j++)
+        for(unsigned int j = 0; j < size; j++)
         {
             if(p[j][i]->get_PlaceA() == cnt->get_PlaceA() && p[j][i]->get_PlaceB() == cnt->get_PlaceB())
             {
@@ -85,7 +85,7 @@ void Matrix::add_connection(DirectConnection *cnt)
     else if(this->isCity(cnt->get_PlaceA()))
     {
         this->extend_matrix();
-        for( int i = 0; i < size; i++)
+        for(unsigned int i = 0; i < size; i++)
         {
             if(cites[i] == cnt->get_PlaceA())
             {
@@ -98,7 +98,7 @@ void Matrix::add_connection(DirectConnection *cnt)
     else if(this->isCity(cnt->get_PlaceB()))
     {
         this->extend_matrix();
-        for( int i = 0; i < size; i++)
+        for(unsigned int i = 0; i < size; i++)
         {
             if(cites[i] == cnt->get_PlaceB())
             {
@@ -121,13 +121,13 @@ void Matrix::add_connection(DirectConnection *cnt)
 
 DirectConnection * Matrix::operator()(City const& CityA, City const& CityB)
 {
-    for(int i = 0 ; i < size ; i++)
+    for(unsigned int i = 0 ; i < size ; i++)
     {
     if(p[i][0]!=nullptr)
     {
     if(p[i][0]->get_PlaceA() == CityA || p[i][0]->get_PlaceB() == CityA)
     {
-        for(int j = 0; j < size ; j++)
+        for(unsigned int j = 0; j < size ; j++)
         {
             if(p[i][j]!=nullptr)
             {
@@ -138,11 +138,11 @@ DirectConnection * Matrix::operator()(City const& CityA, City const& CityB)
     }
     }
     }
-    // return nullptr;
-    throw DCNotFoundException("DirectConnection not found in matrix", CityA, CityB);
+    return nullptr;
+    // throw DCNotFoundException("DirectConnection not found in matrix", CityA, CityB);
 }
 
-DirectConnection * Matrix::operator()(int i, int j){
+DirectConnection * Matrix::operator()(unsigned int i, unsigned int j){
     if(i>this->get_size() || j > this->get_size()){
         throw MyException("Matrix index out of range");
     }
@@ -170,9 +170,9 @@ Matrix::~Matrix()
 std::string Matrix::description() const
 {
     std::stringstream ss;
-    for(int i = 0; i < size; i++)
+    for(unsigned int i = 0; i < size; i++)
     {
-    for(int j = 0; j < size; j++)
+    for(unsigned int j = 0; j < size; j++)
     {
     if(p[i][j] != nullptr)
     {
@@ -190,9 +190,9 @@ std::string Matrix::description() const
 
 void Matrix::print_matrix()
 {
-    for(int i = 0; i < size; i++)
+    for(unsigned int i = 0; i < size; i++)
     {
-    for(int j = 0; j < size; j++)
+    for(unsigned int j = 0; j < size; j++)
     {
     if(p[i][j] != nullptr)
     {
