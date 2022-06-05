@@ -15,7 +15,7 @@ void DataBase::create_cheapest_matrix(possible_type const& type)
 
     if(type == BOTH)
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
@@ -30,7 +30,7 @@ void DataBase::create_cheapest_matrix(possible_type const& type)
 
     else if(type == BUS)
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
@@ -47,7 +47,7 @@ void DataBase::create_cheapest_matrix(possible_type const& type)
 
     else if(type == TRAIN)
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
@@ -77,7 +77,7 @@ void DataBase::create_fastest_matrix(possible_type const& type)
 
     if(type == BOTH)
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
@@ -92,7 +92,7 @@ void DataBase::create_fastest_matrix(possible_type const& type)
 
      else if(type == BUS)
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
@@ -109,7 +109,7 @@ void DataBase::create_fastest_matrix(possible_type const& type)
 
     else if(type == TRAIN)
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
@@ -139,7 +139,7 @@ void DataBase::create_shortest_matrix(possible_type const& type)
 
     if(type == BOTH)
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
             {
                 if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
                 {
@@ -154,7 +154,7 @@ void DataBase::create_shortest_matrix(possible_type const& type)
 
     else if(type == BUS)
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
@@ -172,7 +172,7 @@ void DataBase::create_shortest_matrix(possible_type const& type)
 
     else if(type == TRAIN)
     {
-        for(int i = 0; i < connections.size(); i++)
+        for(unsigned int i = 0; i < connections.size(); i++)
         {
             if(current_matrix(connections[i].get_PlaceA(), connections[i].get_PlaceB()) == nullptr)
             {
@@ -304,7 +304,7 @@ std::vector<City> DataBase::city_using_info(std::string const& nameA, std::strin
         bool is_bus = false;
         bool is_found = false;
 
-        for (int i = 0; i<cities.size(); i++)
+        for (unsigned int i = 0; i<cities.size(); i++)
         {
             if(cities[i].get_name() == name)
             {
