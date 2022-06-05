@@ -3,6 +3,7 @@
 #include "DataBase.h"
 #include <vector>
 #include "enums.h"
+#include "RouteFinder.h"
 
 using namespace std;
 
@@ -62,7 +63,7 @@ int main()
     DirectConnection Wroclaw_Krakow_db(3,250000,45,180,Wroclaw,Krakow, Bus);
     DirectConnection Krakow_Warszawa_db(1,300000,80,240,Krakow,Warszawa,Bus);
 
-    DataBase db;
+    DataBase db("connections.csv");
     db.add_direct_connection(Krakow_Warszawa_db);
     db.add_direct_connection(Warszawa_Gdynia_db);
     db.add_direct_connection(Wroclaw_Krakow_db);
@@ -78,23 +79,49 @@ int main()
     //TESTY CSV
 
     std::vector<DirectConnection> connections;
-    DataBase base(connections);
+    DataBase base("connections.csv", connections);
     base.load_file();
     for(auto connection : base.get_connections())
     {
-        cout << "Id: " << connection.get_connection_id() << endl <<
-        "Distance: " << connection.get_distance() << endl <<
-        "Cost: " << connection.get_cost() << endl <<
-        "Time: " << connection.get_time() << endl <<
-        "From: " << connection.get_PlaceA().get_name() << '(' << connection.get_PlaceA().isTrainStation() <<
-        connection.get_PlaceA().isBusStation() << ')' << endl <<
-        "To: " <<  connection.get_PlaceB().get_name() << '(' << connection.get_PlaceB().isTrainStation() <<
-        connection.get_PlaceB().isBusStation() << ')' << endl;
+        connection.print_connection_details();
+        cout << endl;
     }
 
-    if(base.get_connections().size() != 2)
+
+    // base.add_direct_connection(200,20,120,"Sopot","Świnioujście",Train);
+
+    base.update_data_base();
+
+    for(auto c : base.get_cities())
     {
-        cout << "test failed, adding objects was unsuccesfull" << endl;
+        cout << c.get_name() << "(" <<c.isTrainStation()<< "," << c.isBusStation() << ")" << endl;
     }
-    return 0;
+
+    // base.create_cheapest_matrix(BOTH);
+    // base.get_current_matrix().description();
+    // base.create_cheapest_matrix(BUS);
+    // base.create_cheapest_matrix(TRAIN);
+    // base.create_fastest_matrix(BOTH);
+    // base.create_fastest_matrix(BUS);
+    // base.create_fastest_matrix(TRAIN);
+    base.create_shortest_matrix(BOTH);
+    base.create_shortest_matrix(BUS);
+    base.create_shortest_matrix(TRAIN);
+
+    RouteFinder rf("connections.csv");
+    cout << endl;
+    cout << rf.find_user_connection("Kraków","Tarnów", SHORTEST, BOTH);
+    try
+    {
+        Connection con = rf.find_user_connection("Kraków","Tarnów", SHORTEST, TRAIN);
+    }
+    catch(ConnectionNotFoundException const& e)
+    {
+        std::cerr << e.what() << std::endl;
+        std::cerr << "Chosen cities:" << std::endl << e.what_PlaceA() << std::endl;
+        std::cerr << e.what_PlaceB() << std::endl;
+    }
+
+
+
 }

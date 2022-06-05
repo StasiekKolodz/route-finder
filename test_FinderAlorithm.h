@@ -1,7 +1,11 @@
 #include "FinderAlgorithm.h"
 #include "RouteFinder.h"
-int main(){
-    Matrix matrix;
+
+using namespace std;
+
+int test_FinderAlogithm()
+{
+        Matrix matrix;
     City Krakow("Krakow", false, true);
     City Warszawa("Warszawa", false, true);
     City Gdynia("Gdynia", false, true);
@@ -12,13 +16,13 @@ int main(){
     matrix.add_connection(&Krakow_Warszawa);
     matrix.add_connection(&Warszawa_Gdynia);
     matrix.add_connection(&Wroclaw_Krakow);
-
-
     FinderAlgorithm fa(matrix);
+
+
     // Test 1 creating FinderAlgorithm
 
-    // if(fa.get_connetions_matrix().get_size() != 6)
-    //     std::cerr << "FA : Error in test 1\n";
+    if(fa.get_connetions_matrix().get_size() != 6)
+        std::cerr << "FA : Error in test 1\n";
 
     // Test 2 dijkstra_time function (first city in matrix)
     std::vector<int> exp_dist = {0, 240, 420, 180};
@@ -84,34 +88,6 @@ int main(){
             << fa.get_previous()[i] << " instead of " << exp_dist[i] << " and " << exp_prev[i] << std::endl;
         }
     }
-
-    Connection cnt(Warszawa, Krakow);
-    cnt.set_id(2);
-    cnt.add_direct_conection(&Krakow_Warszawa);
-    cnt.add_direct_conection(&Wroclaw_Krakow);
-
-    Connection my_cnt = fa.generate_connection_time(Krakow, Gdynia);
-    std::vector<DirectConnection *> dcv = my_cnt.get_connection_elements();
-    // std::cout << dcv[0]->get_time() << std::endl;
-    // std::cout << dcv[1]->get_time() << std::endl;
-
-    // std::cout << Warszawa << std::endl;
-    // std::cout << Krakow_Warszawa << std::endl;
-    // std::cout << my_cnt << std::endl;
-    // Krakow_Warszawa.print_connection_details();
-    // my_cnt.print_connection_details();
-    RouteFinder rf;
-    rf.load_file();
-    try{
-    rf.create_cheapest_matrix(BOTH);
-    }
-    catch(DCNotFoundException e){
-        std::cout << e.what_PlaceA() << " , " << e.what_PlaceB() << std::endl;
-    }
-    rf.get_current_matrix().print_matrix();
-    // Connection cnt1 = rf.find_user_connection(Warszawa, Krakow, CHEAPEST, BOTH);
-    // std::cout << cnt1 << std::endl;
-    std::cout << "End of tests\n";
 
     return 0;
 }
