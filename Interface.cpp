@@ -1,5 +1,5 @@
 #include <iostream>
-#include "interface.h"
+#include "Interface.h"
 #include "RouteFinder.h"
 #include "enums.h"
 
@@ -14,9 +14,11 @@ void Interface::run_interface()
     std::string PlaceB;
     possible_search_setting setting;
     possible_type type;
+    bool working = true;
 
+    while( working )
+    {
     option = choose_function();
-
     switch(option)
     {
         case 1:
@@ -28,18 +30,32 @@ void Interface::run_interface()
 
                 setting = choose_setting();
                 type = choose_type();
-                cout << rf.find_user_connection(PlaceA, PlaceB, setting, type);
+                try
+                {
+                cout << rf.find_user_connection(PlaceA, PlaceB, setting, type) << endl;
+                }
+                catch(const CityNotFoundException& e)
+                {
+                cout << "No such connection" << endl;
+                }
+
             }
             break;
         case 2:
             {
-                
+
             }
             break;
         case 3:
             {
-                
+
             }
+            break;
+        case 4:
+            {
+                working = false;
+            }
+    }
     }
 }
 
@@ -78,8 +94,8 @@ int Interface::choose_function()
             }
             break;
         case '4':
-            { 
-                break;
+            {
+                return 4;
             }
     }
 }

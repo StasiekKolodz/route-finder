@@ -128,21 +128,17 @@ void Matrix::add_connection(DirectConnection *cnt)
 // returning pointer to connection using cities - if not found return nullptr
 DirectConnection * Matrix::operator()(City const& CityA, City const& CityB)
 {
-    for(int i = 0 ; i < size ; i++)
+    for(int i = 0; i < size; i++)
     {
-    if(p[i][0]!=nullptr)
+    for(int j = 0; j < size; j++)
     {
-    if(p[i][0]->get_PlaceA() == CityA || p[i][0]->get_PlaceB() == CityA)
-    {
-        for(int j = 0; j < size ; j++)
+        if(p[i][j] != nullptr)
         {
-            if(p[i][j]!=nullptr)
-            {
-            if(p[i][j]->get_PlaceA() == CityB || p[i][j]->get_PlaceB() == CityB)
-            {return p[i][j];}
-            }
+            if(p[i][j]->get_PlaceA() == CityA && p[i][j]->get_PlaceB() == CityB)
+                return p[j][i];
+            else if(p[i][j]->get_PlaceB() == CityA && p[i][j]->get_PlaceA() == CityB)
+                return p[j][i];
         }
-    }
     }
     }
     return nullptr;
