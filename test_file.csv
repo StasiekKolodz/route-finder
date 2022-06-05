@@ -1,0 +1,5 @@
+ConnectionId,Distance,Cost,Time,CityA,CityB,Type
+1,290000,90,150,Kraków,Warszawa,Train
+2,190000,56,130,Tarnów,Radom,Bus
+3,100000,20,90,Radom,Warszawa,Train
+4,50000,30,120,Radom,Warszawa,Train
