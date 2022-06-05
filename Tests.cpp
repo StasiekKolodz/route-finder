@@ -174,10 +174,11 @@ void Tests::test_DataBase() const
         cerr << "DB: Test 2 - FAILED" << endl;
         else if(db.get_current_stations_type() != BOTH)
         cerr << "DB: Test 2 - FAILED" << endl;
-        else if(db.get_current_matrix()(1,3)->get_time() != 20)
+        else if(db.get_current_matrix()(3,1)->get_cost() != 20)
         cerr << "DB: Test 2 - FAILED" << endl;
         else
         cerr << "DB: Test 2 - PASSED" << endl;
+
 
     // Test 3 - generating matrix to shortest ( + TRAIN parameter)
         db.create_shortest_matrix(TRAIN);

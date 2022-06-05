@@ -24,8 +24,6 @@ Connection RouteFinder::find_user_connection(std::string const& nameA, std::stri
         FA.set_connections_matrix(db.get_current_matrix());
         return FA.generate_connection_dist(UserCityA, UserCityB);
         break;
-    default:
-        break;
     }
 }
 
@@ -38,5 +36,5 @@ City RouteFinder::find_city(std::string const& name)
         if(c.get_name() == name)
         return c;
     }
-    throw "STH";
+    throw CityNotFoundException("City not found");
 }

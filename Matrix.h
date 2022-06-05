@@ -43,6 +43,4 @@ public:
     //destrucotr
     ~Matrix();
 
-    // DirectConnection***get_p(){return p;}
-
 };
