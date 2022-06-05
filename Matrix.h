@@ -27,19 +27,7 @@ public:
     //operators
     Matrix & operator=(Matrix const& matrix_to_assign);
     DirectConnection* operator()(City const& CityA, City const& CityB);
-<<<<<<< HEAD
     DirectConnection* operator()(unsigned int i, unsigned int j);
-    unsigned int get_size() const
-    {
-        return size;
-    }
-    std::vector<City> get_cities() const
-    {
-        return cites;
-    }
-=======
-    DirectConnection* operator()(int i, int j);
->>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
 
 
     void add_connection(DirectConnection *cnt);

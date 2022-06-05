@@ -41,4 +41,4 @@ InterfaceTest.o: InterfaceTest.cpp
 	g++ -g -c InterfaceTest.cpp
 
 clean:
-	rm -f Interface.o InterfaceTest.o Interface.o Connection.o DirectConnection.o Matrix.o DataBase.o RouteFinder.o FinderAlgorithm.o project_test.out tests.out
+	rm -f Interface.o InterfaceTest.o Interface.o Connection.o DirectConnection.o Matrix.o DataBase.o RouteFinder.o FinderAlgorithm.o project_test.out tests.out Tests.o run_tests.o
