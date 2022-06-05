@@ -13,8 +13,7 @@ class City
     public:
 
         // constructors
-        City(std::string n, bool isTrain=false, bool isBus=false) : name(n), isTrain(isTrain), isBus(isBus){}
-        City(){}
+        City(std::string n="", bool isTrain=false, bool isBus=false) : name(n), isTrain(isTrain), isBus(isBus){}
 
         // getters
         std::string get_name() const { return name; }

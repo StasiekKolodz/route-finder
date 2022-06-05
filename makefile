@@ -19,21 +19,17 @@ Connection.o: Connection.h Connection.cpp
 DirectConnection.o: DirectConnection.h DirectConnection.cpp
 	g++ -g -c DirectConnection.cpp
 
-
-file_test: file_test.o
-	g++ -o file_test.exe file_test.o
-
-file_test.o: file_test.cpp
-	g++ -c file_test.cpp
-
-FinderAlgorithm_test: FinderAlgorithm_test.o Connection.o DirectConnection.o Matrix.o DataBase.o FinderAlgorithm.o RouteFinder.o
-	g++ -o FinderAlgorithm_test.out FinderAlgorithm_test.o Connection.o DirectConnection.o Matrix.o DataBase.o FinderAlgorithm.o RouteFinder.o
-
 FinderAlgorithm.o: FinderAlgorithm.h FinderAlgorithm.cpp
 	g++ -c FinderAlgorithm.cpp
 
-FinderAlgorithm_test.o: FinderAlgorithm_test.cpp
-	g++ -c FinderAlgorithm_test.cpp
+run_tests: run_tests.o Tests.o Connection.o DirectConnection.o Matrix.o DataBase.o RouteFinder.o FinderAlgorithm.o
+	g++ -o tests.out run_tests.o Tests.o Connection.o DirectConnection.o Matrix.o DataBase.o RouteFinder.o FinderAlgorithm.o
+
+run_tests.o: run_tests.cpp
+	g++ -g -c run_tests.cpp
+
+tests.o: Tests.cpp
+	g++ -g -c Tests.cpp
 
 clean:
-	rm -f Connection.o DirectConnection.o Matrix.o DataBase.o project_test.out execute_project_file.o RouteFinder.o file_test.o file_test.out FinderAlgorithm.o FinderAlgorithm_test.o FinderAlgorithm_test.out
+	rm -f *.o *.out
