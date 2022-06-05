@@ -31,7 +31,7 @@ void FinderAlgorithm::set_connections_matrix(Matrix const& cm)
 }
 
 
-// -------------------------------
+// finding unused city with lowest graph distance value
 City FinderAlgorithm::min_city_node() const
 {
     int min_dist = INT_MAX;
@@ -194,7 +194,7 @@ Connection FinderAlgorithm::generate_connection(City const& PlaceA, City const& 
         throw ConnectionNotFoundException("There aren't any connection with type you choose",PlaceA, PlaceB);
     }
     path.insert(path.begin(), Aidx);
-    for(int i=0; i<path.size()-1; i++){
+    for(unsigned int i=0; i<path.size()-1; i++){
         ret_connection.add_direct_conection(connections_matrix(path[i], path[i+1]));
     }
     return ret_connection;

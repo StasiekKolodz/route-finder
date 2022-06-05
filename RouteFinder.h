@@ -26,5 +26,5 @@ class RouteFinder
         City find_city(std::string const& name);
 
         //getter
-        DataBase get_db() const {return db;}
+        DataBase& get_db() {return db;}
 };

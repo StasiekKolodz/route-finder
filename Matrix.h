@@ -46,5 +46,3 @@ public:
     // DirectConnection***get_p(){return p;}
 
 };
-
-
