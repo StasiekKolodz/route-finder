@@ -99,7 +99,11 @@ int main(){
     // std::cout << Krakow_Warszawa << std::endl;
     // std::cout << my_cnt << std::endl;
     // Krakow_Warszawa.print_connection_details();
+<<<<<<< HEAD
     // my_cnt.print_connection_details();
+=======
+    // // my_cnt.print_connection_details();
+>>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
     // RouteFinder rf;
     // rf.load_file();
     // try{
@@ -109,9 +113,15 @@ int main(){
     //     std::cout << e.what_PlaceA() << " , " << e.what_PlaceB() << std::endl;
     // }
     // rf.get_current_matrix().print_matrix();
+<<<<<<< HEAD
     // Connection cnt1 = rf.find_user_connection(Warszawa, Krakow, CHEAPEST, BOTH);
     // std::cout << cnt1 << std::endl;
     std::cout << "End of tests\n";
+=======
+    // // Connection cnt1 = rf.find_user_connection(Warszawa, Krakow, CHEAPEST, BOTH);
+    // // std::cout << cnt1 << std::endl;
+    // std::cout << "End of tests\n";
+>>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
 
     return 0;
 }

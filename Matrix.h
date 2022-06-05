@@ -5,19 +5,29 @@
 class Matrix
 {
 private:
+
     DirectConnection ***p;
     unsigned int size;
     std::vector<City> cites;
+
+    //private method using by other methods
     void extend_matrix();
 
 
 public:
+
+    //constructors
     Matrix();
     Matrix(Matrix const& matrix_to_copy);
+
+    //geters
+    unsigned int get_size() const { return size; }
+    std::vector<City> get_cities() const { return cites; }
+
+    //operators
     Matrix & operator=(Matrix const& matrix_to_assign);
-    void add_connection(DirectConnection *cnt);
-    bool isCity(City const& city) const;
     DirectConnection* operator()(City const& CityA, City const& CityB);
+<<<<<<< HEAD
     DirectConnection* operator()(unsigned int i, unsigned int j);
     unsigned int get_size() const
     {
@@ -27,14 +37,26 @@ public:
     {
         return cites;
     }
+=======
+    DirectConnection* operator()(int i, int j);
+>>>>>>> 870be7dcd27fc78f9b0ed515ade38ef71863d9cc
 
+
+    void add_connection(DirectConnection *cnt);
+    bool isCity(City const& city) const;
+
+    //stream methods
     std::string description() const;
-
-    ~Matrix();
-    DirectConnection***get_p(){
-        return p;
-    }
     void print_matrix();
+
+    //method to clean whole matrix
+    void clean();
+
+    //destrucotr
+    ~Matrix();
+
+    // DirectConnection***get_p(){return p;}
+
 };
 
 

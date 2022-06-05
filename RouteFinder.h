@@ -4,29 +4,27 @@
 #include "FinderAlgorithm.h"
 #include "DataBase.h"
 
-class RouteFinder : public FinderAlgorithm, public DataBase
+class RouteFinder
 {
+    private:
+
+        DataBase db;
+        FinderAlgorithm FA;
+        City UserCityA;
+        City UserCityB;
+
     public:
-    RouteFinder()
-    {}
-    Connection find_user_connection(City const& A, City const& B, possible_search_setting setting, possible_type type)
-    {
-        switch (setting)
-        {
-        case CHEAPEST:
-            create_cheapest_matrix(type);
-            return generate_connection_cost(A, B);
-            break;
-        case FASTEST:
-            create_fastest_matrix(type);
-            return generate_connection_time(A, B);
-            break;
-        case SHORTEST:
-            create_shortest_matrix(type);
-            return generate_connection_dist(A, B);
-            break;
-        default:
-            break;
-        }
-    }
+
+        //constructor
+        RouteFinder(std::string const& filepath) {db.set_file_path(filepath); db.load_file();}
+
+        //method used in interface to handle settings
+        Connection find_user_connection(std::string const& nameA, std::string const& nameB,
+                                        possible_search_setting setting, possible_type type);
+
+        //method to find city using string
+        City find_city(std::string const& name);
+
+        //getter
+        DataBase get_db() const {return db;}
 };

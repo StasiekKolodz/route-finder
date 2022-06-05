@@ -1,5 +1,7 @@
 #include "DirectConnection.h"
 
+
+// function to move information to stream
 std::ostream& operator<<(std::ostream& os, DirectConnection const& dc)
 {
     std::string station_tp[2] = {"Bus", "Train"};
@@ -11,6 +13,8 @@ std::ostream& operator<<(std::ostream& os, DirectConnection const& dc)
     return os;
 }
 
+
+// function to directly print details to cout
 void DirectConnection::print_connection_details()
 {
     std::string station_tp[2] = {"Bus", "Train"};
