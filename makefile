@@ -19,8 +19,8 @@ Connection.o: Connection.h Connection.cpp
 DirectConnection.o: DirectConnection.h DirectConnection.cpp
 	g++ -g -c DirectConnection.cpp
 
-City.o: City.h City.cpp
-	g++ -g -c City.cpp
+FinderAlgorithm.o: FinderAlgorithm.h FinderAlgorithm.cpp
+	g++ -g -c -Wall -Wextra FinderAlgorithm.cpp
 
 run_tests: run_tests.o Tests.o Connection.o DirectConnection.o Matrix.o DataBase.o RouteFinder.o FinderAlgorithm.o
 	g++ -o tests.out run_tests.o Tests.o Connection.o DirectConnection.o Matrix.o DataBase.o RouteFinder.o FinderAlgorithm.o
@@ -41,4 +41,4 @@ InterfaceTest.o: InterfaceTest.cpp
 	g++ -g -c InterfaceTest.cpp
 
 clean:
-	rm -f Interface.o InterfaceTest.o Interface.o Connection.o DirectConnection.o Matrix.o DataBase.o RouteFinder.o FinderAlgorithm.o project_test.out tests.out Tests.o run_tests.o
+	rm -f *.o *.out
