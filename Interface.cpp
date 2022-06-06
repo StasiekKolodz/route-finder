@@ -11,7 +11,7 @@ void Interface::run_interface()
     RouteFinder rf("connections.csv");
 
     bool running = true;
-    int wait;
+    char wait;
     bool planner_running = true;
     bool planner_place_chosen = false;
     int option;
