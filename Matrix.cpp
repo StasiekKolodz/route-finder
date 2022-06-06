@@ -148,7 +148,7 @@ DirectConnection * Matrix::operator()(City const& CityA, City const& CityB)
 // returning pointer to connection using index
 DirectConnection * Matrix::operator()(int i, int j){
     if(i>this->get_size() || j > this->get_size()){
-        throw MyException("Matrix index out of range");
+        throw WrongRouteException("Matrix index out of range");
     }
     return p[i][j];
 }

@@ -13,11 +13,15 @@ void Connection::add_direct_conection(DirectConnection* dc)
 
     if(std::find(changes_list.begin(), changes_list.end(), dc->get_PlaceA()) == changes_list.end())
     {
+        if(dc->get_PlaceA() != this->PlaceA && dc->get_PlaceA() != this->PlaceB){
         changes_list.push_back(dc->get_PlaceA());
+        }
     }
     if(std::find(changes_list.begin(), changes_list.end(), dc->get_PlaceB()) == changes_list.end())
     {
+        if(dc->get_PlaceB() != this->PlaceA && dc->get_PlaceB() != this->PlaceB){
         changes_list.push_back(dc->get_PlaceB());
+        }
     }
 
     distance += dc->get_distance();
@@ -33,9 +37,10 @@ std::ostream& operator<<(std::ostream& os, Connection const& cnt)
     os << "Time: " << cnt.get_time()/60 << ":" << cnt.get_time()%60 << std::endl;
     os << "Cost: " << cnt.get_cost() << " zł" << std::endl;
     os << "Distance: " << cnt.get_distance()/1000 << " km" << std::endl;
+    if(cnt.changes_list.size() != 0)
     os << "There are changes in: ";
 
-    for(int i=1; i < cnt.changes_list.size() -1; i++)
+    for(int i=0; i < cnt.changes_list.size(); i++)
     {
         os << cnt.changes_list[i] << " ";
     }

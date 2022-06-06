@@ -20,7 +20,7 @@ class Route
         Route(unsigned int id, unsigned int d, unsigned int c,
         unsigned int t, City const& PA, City const& PB):
         connection_id(id), distance(d), cost(c), time(t), PlaceA(PA), PlaceB(PB)
-        { if(PA == PB) throw MyException("Place A and place B must be different"); }
+        { if(PA == PB) throw WrongRouteException("Place A and place B must be different"); }
 
         //strem methods
         virtual void print_connection_details() = 0;
