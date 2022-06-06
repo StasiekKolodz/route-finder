@@ -59,10 +59,12 @@ void Connection::print_connection_details()
     std::cout << "Time: " << time/60 << ":" << time%60 << std::endl;
     std::cout << "Cost: " << cost << " zł" << std::endl;
     std::cout << "Distance: " << distance/1000 << " km" << std::endl;
-    std::cout << "Parts od this connection:" << std::endl << std::endl;
+    if(changes_list.size() != 0){
+    std::cout << "Parts of this connection:" << std::endl << std::endl;
     for(auto& v:connection_elements)
     {
         v->print_connection_details();
         std::cout << std::endl;
+    }
     }
 }

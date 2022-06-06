@@ -12,4 +12,5 @@ public:
     possible_type choose_type();
     station_type choose_station_type();
     int choose_planner_mode(std::vector<std::string>& Places_vec);
+    int choose_details_exit();
 };

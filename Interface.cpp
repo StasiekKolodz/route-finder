@@ -11,7 +11,7 @@ void Interface::run_interface()
     RouteFinder rf("connections.csv");
 
     bool running = true;
-    int wait;
+    char wait;
     bool planner_running = true;
     bool planner_place_chosen = false;
     int option;
@@ -42,20 +42,52 @@ void Interface::run_interface()
                     {
                     cout << "From: " << endl;
                     cin >> PlaceA;
+                    string check("lll");
+                    getline(cin, check);
+                    if(check.size() != 0){throw  CityNotFoundException("City doeasnt exist");}
                     rf.find_city(PlaceA);
                     cout << "To: " << endl;
                     cin >> PlaceB;
+                    if(PlaceA == PlaceB)
+                        throw WrongRouteException("Place A and place B must be different");
                     rf.find_city(PlaceB);
                     system("clear");
                     setting = choose_setting();
                     type = choose_type();
                    
                         cout << rf.find_user_connection(PlaceA, PlaceB, setting, type) << endl;
-                        cout << "Press any key to exit..." << endl;
-                        cin >> wait;
+                        option = choose_details_exit();
+                        switch(option){
+                            case 1:
+                            {
+                                system("clear");
+                                rf.find_user_connection(PlaceA, PlaceB, setting, type).print_connection_details();
+                                cout << "Press any key to exit..." << endl;
+                                cin>>wait;
+                                system("clear");
+                            }
+                            break;
+                            case 2:
+                            {
+                                system("clear");
+                            }
+                            break;
+                            default: cout << "Choose correct option." << endl;
+                        }
+                        
+                        
+                    }
+                    catch(const WrongRouteException &e)
+                    {
                         system("clear");
+                        cout << "Second place must be different than first one" << endl;
                     }
                     catch(const CityNotFoundException &e)
+                    {
+                        system("clear");
+                        cout << "No such connection with given parametres" << endl;
+                    }
+                    catch(...)
                     {
                         system("clear");
                         cout << "No such connection with given parametres" << endl;
@@ -65,6 +97,7 @@ void Interface::run_interface()
             case 2:
                 {
                     system("clear");
+                    Places_vec.clear();
                     planner_running = true;
                     planner_place_chosen = false;
                     while(!planner_place_chosen)
@@ -86,6 +119,7 @@ void Interface::run_interface()
 
                     }
                     while(planner_running){
+                        
                        planner_option = choose_planner_mode(Places_vec);
                        switch(planner_option)
                        {
@@ -108,12 +142,12 @@ void Interface::run_interface()
                                 catch(const WrongRouteException &e)
                                 {
                                     system("clear");
-                                    cout << "Next place cant be same as previous one" << endl;
+                                    cout << "Next place cant be same as previous one" << endl << endl;
                                 }
                                 catch(...)
                                 {
                                     system("clear");
-                                    cout << "There are no connections from this place" << endl;
+                                    cout << "There are no connections from this place" << endl << endl;
                                 }
                             }
 
@@ -121,6 +155,7 @@ void Interface::run_interface()
                            break;
                            case 2:
                            {   if(Places_vec.size() > 1){
+                               try{
                                system("clear");
                                setting = choose_setting();
                                type = choose_type();
@@ -130,9 +165,7 @@ void Interface::run_interface()
                                {
                                    cout << rf.find_user_connection(*it, *(it+1), setting, type) << endl << endl;
                                }
-                                cout << "1. Show connections details" << endl;
-                                cout << "2. Exit" << endl;
-                                cin >> planner_option;
+                                planner_option = choose_details_exit();
                                 switch(planner_option){
                                     case 1:
                                     {
@@ -146,7 +179,10 @@ void Interface::run_interface()
                                         }
                                         cout << endl << "Press any key to exit" << endl;
                                         cin >> wait;
+                                        Places_vec.clear();
                                         planner_running = false;
+                                        system("clear");
+                                    
                                     }
                                     break;
                                     case 2:
@@ -158,6 +194,12 @@ void Interface::run_interface()
                                 }
                                planner_running = false;
                             }
+                            catch(...)
+                               {
+                                   cout << "Connection not found" << endl << endl;
+                                   planner_running = false;
+                               }
+                           }
                             else{
                                 system("clear");
                                 cout << "Trip needs to have at least two places" << endl << endl;
@@ -373,4 +415,13 @@ int Interface::choose_planner_mode(std::vector<std::string>& Places_vec){
     cin >> opt;
     system("clear");
     return opt;
+}
+
+int Interface::choose_details_exit()
+{
+    int choice;
+    cout << "1. Show connections details" << endl;
+    cout << "2. Exit" << endl;
+    cin >> choice;
+    return choice;
 }
