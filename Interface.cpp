@@ -267,6 +267,7 @@ int Interface::choose_function()
 
     char wybor;
     cin >> wybor;
+    system("clear");
 
     switch(wybor)
     {
