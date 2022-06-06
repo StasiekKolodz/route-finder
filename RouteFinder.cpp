@@ -36,5 +36,5 @@ City RouteFinder::find_city(std::string const& name)
         if(c.get_name() == name)
         return c;
     }
-    throw CityNotFoundException("City not found");
+    throw CityNotFoundException("City not found in database");
 }

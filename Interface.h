@@ -1,5 +1,6 @@
 #include <iostream>
 #include "enums.h"
+#include <vector>
 
 class Interface
 {
@@ -10,4 +11,5 @@ public:
     possible_search_setting choose_setting();
     possible_type choose_type();
     station_type choose_station_type();
+    int choose_planner_mode(std::vector<std::string>& Places_vec);
 };
