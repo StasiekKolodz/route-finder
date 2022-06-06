@@ -53,9 +53,12 @@
 > Klasa reprezentująca miasta. Posiada zestaw metod pozwalających uzystkać dostęp do atrybutów. Dodatkowo każdy obiekt (miasto) posiada inforormcję o wystąpieniu stacji autobusowej bądź stacji dla pociągów.  
 
 **Atrybuty**:  
-> * **std::string**  name;  - nazwa miasta  
-> * **bool**  isTrain; - czy miasto zawiera stację dla pociągów   
->* **bool**  isBus; - czy miasto zawiera stację autobusową  
+> * **std::string**  name;  
+> *nazwa miasta*  
+> * **bool**  isTrain;   
+> *czy miasto zawiera stację dla pociągów*  
+>* **bool**  isBus;  
+> *czy miasto zawiera stację autobusową*  
 
 **Metody:**
 >* City(std::string  n="", bool  isTrain=false, bool  isBus=false);  
@@ -74,15 +77,23 @@
 
 **Atrybuty**:  
 >* **unsigned  int**  connection_id;  
+>*unikalne ID połączenia*  
 >* **unsigned  int**  distance;  
+>*odległość połączenia*  
 >* **unsigned  int**  cost;  
+>*koszt połączenia*  
 >* **unsigned  int**  time;  
+>*czas połączenia*  
 >* **City**  PlaceA;  
+> *miasto pierwsze*  
 >* **City**  PlaceB;  
+> *miasto drugie*  
 
 **Metody:**  
 > * Route(unsigned  int  id, unsigned  int  d, unsigned  int  c, unsigned  int  t, City  const&  PA, City  const&  PB);  
+>  *konstruktor klasy*  
 >* **virtual  void** print_connection_details() =  0;  
+>*wirtualna metoda wyświetlająca szczegóły połączenia*  
 >* **unsigned  int**  get_connection_id();  
 >* **unsigned  int**  get_distance() const;  
 >* **unsigned  int**  get_cost() const;  
@@ -94,8 +105,7 @@
 ------------
 ### DirectConnection :  Route  
 **Opis klasy:**  
-> Lorem ipsum is a giasjdo. asodjasd asdadasd. AFsdf. ASDasdasd
-> aasdad aSDASD asdADASdadsd....  
+> Klasa dziedzicząca po klasie Route. Reprezentuje bezpośrednie połączenie między dwoma miastami.  
 
 **Atrybuty**:  
 >* **station_type**  type;   
@@ -106,61 +116,73 @@
 unsigned  int  t, City  const&  PA, City  const&  PB, station_type  tp);  
 >* **unsigned  int**  get_connection_id() const;  
 >* **station_type**  get_type() const;  
->* **bool**  operator==(DirectConnection  dc);  
+>* **bool**  operator==(DirectConnection  dc);   
 >* **bool**  operator!=(DirectConnection  dc);  
 >* **friend std::ostream&**  operator<<(std::ostream&  os, DirectConnection  const&  dc);  
 >* **virtual  void**  print_connection_details();  
+>*przeciążona metoda wyświetlające szczegóły połączenia*
 -----------
 ### Connection :  Route  
 **Opis klasy:**  
-> Lorem ipsum is a giasjdo. asodjasd asdadasd. AFsdf. ASDasdasd
-> aasdad aSDASD asdADASdadsd....  
+> Klasa dziedzicząca po klasie Route. Reprezentuje połączenie między dwoma miastami. W porównaniu do DirectConnection, połączenie te nie musi być bezpośrednie. W atrybutach posiada listę DirectConnections, z których składa się połączenie. Dodatkowo posiada listę miast, w których następuje przesiadka.   
 
 **Atrybuty**:  
 >* **std::vector\<DirectConnection\*>**  connection_elements;   
+>*wektor połączeń bezpośrednich, z których składa się połączenie*  
 >* **std::vector\<City>**  changes_list;  
+>*wektor miast, w których następuje przesiadka*  
 
 **Metody:**  
 >* Connection(City  PA, City  PB);   
 >* **std::vector\<DirectConnection\*>** get_connection_elements() const;  
 >* **unsigned  int**  get_connection_id();  
 >* **void**  add_direct_conection(DirectConnection*  dc);  
->* **void** set_id(unsigned  int  id);  
+>*metoda dodająca połączenie bezpośrednie do listy połączeń. Automatycznie dodawane są przesiadki*  
+>* **void** set_id(unsigned  int  id);    
 >* **friend std::ostream&**  operator<<(std::ostream&  os, Connection  const&  cnt);  
 >* **void** print_connection_details();  
+>*Przeciążona metoda wyświetlająca szczegóły połączenia*  
 ----------
 ### Matrix  
 **Opis klasy:**  
-> Lorem ipsum is a giasjdo. asodjasd asdadasd. AFsdf. ASDasdasd
-> aasdad aSDASD asdADASdadsd....  
+> Klasa kontenerowa. Reprezentuje macierz połączeń potrzebną do przeprowadzenia algorytmu wyszukującego połączenia z zadanymi parametrami. Jest macierzą symetryczną, kwadratową. Elementami macierzy są wskaźniki na połączenia bezpośrednie.  
 
 **Atrybuty**:  
 >* **DirectConnection**  ***p;  
 >* **unsigned  int**  size;  
 >* **std::vector\<City>**  cites;   
+>*wektor miast występujących w macierzy, w kolejności dodawania*  
 
 **Metody prywatne:**  
 >* **void**  extend_matrix();  
+>*prywatna metoda rozszerzająca macierz o jeden wiersz i jedną kolumnę*  
 
 **Metody:**  
 >* Matrix();  
 >* Matrix(Matrix  const&  matrix_to_copy);  
+>*konstruktor kopiujący*  
 >* **unsigned  int**  get_size() const;  
 >* **std::vector\<City>** get_cities() const;   
 >* **Matrix &**  operator=(Matrix  const&  matrix_to_assign);  
->* **DirectConnection\***  operator()(City  const&  CityA, City  const&  CityB);  
+>* **DirectConnection\***  operator()(City  const&  CityA, City  const&  CityB); 
+> *operator() zwracający wskaźnik na połączenie bezpośrednie na podstawie miast*   
 >* **DirectConnection\***  operator()(int  i, int  j);  
+>*operator() zwracający wskaźnik na połączenie bezpośrednie na podstawie indeksów w macierzy*  
 >* **void**  add_connection(DirectConnection  *cnt);  
+>*metoda rozszerzająca macierz i dodająca nowe połączenie (lub zastępująca aktualne połączenie)*  
 >* **bool**  isCity(City  const&  city) const;  
+>*metoda sprawdzająca czy w macierzy znajduje się połączenie zawierające dane miasto*  
 >* **std::string**  description() const;  
+>*metoda zwracająca opis macierzy*  
 >* **void**  print_matrix();  
->* **void**  clean();  
+>* **void**  clean();
+>*metoda zmieniająca wszystkie pola macierzy na nullptr*    
 >* ~Matrix();  
+>*destruktor czyszczący pamięć po wskaźnikach*  
 --------
 ### DataBase
 **Opis klasy:**  
-> Lorem ipsum is a giasjdo. asodjasd asdadasd. AFsdf. ASDasdasd
-> aasdad aSDASD asdADASdadsd....  
+> Klasa reprezentująca bazę danych. Zawiera metody komunikacji z plikiem oraz metody tworzące macierze na podstawie zadanych parametrów. Zawiera wszystkie potrzebne elementy do przeprowadzenie udanego algorytmu wyszukiwania. Dodatkowo za pomocą tej klasy można zapisać nowe połączenia do pliku.  
 
 **Atrybuty:**   
 >* **std::vector\<DirectConnection>**  connections;  
