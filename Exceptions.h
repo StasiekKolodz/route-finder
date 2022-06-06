@@ -7,10 +7,10 @@
 // File with own exceptions using in program to throw
 
 
-struct MyException : public std::exception
+struct WrongRouteException: public std::exception
 {
    std::string msg;
-   MyException(std::string m) : msg(m) {}
+   WrongRouteException(std::string m) : msg(m) {}
    const char* what() const throw() { return msg.c_str(); }
 };
 

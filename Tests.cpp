@@ -2,6 +2,7 @@
 #include "City.h"
 #include "Matrix.h"
 #include "FinderAlgorithm.h"
+#include "RouteFinder.h"
 #include "DataBase.h"
 #include <iostream>
 
@@ -173,10 +174,11 @@ void Tests::test_DataBase() const
         cerr << "DB: Test 2 - FAILED" << endl;
         else if(db.get_current_stations_type() != BOTH)
         cerr << "DB: Test 2 - FAILED" << endl;
-        else if(db.get_current_matrix()(1,3)->get_time() != 20)
+        else if(db.get_current_matrix()(3,1)->get_cost() != 20)
         cerr << "DB: Test 2 - FAILED" << endl;
         else
         cerr << "DB: Test 2 - PASSED" << endl;
+
 
     // Test 3 - generating matrix to shortest ( + TRAIN parameter)
         db.create_shortest_matrix(TRAIN);
@@ -419,7 +421,94 @@ void Tests::test_Matrix() const
 
 void Tests::test_RouteFinder() const
 {
+    cerr << endl << "ROUTE FINDER TESTS" << endl;
 
+    // Test 0 - creating Route Finder;
+    try
+    {
+        RouteFinder rf("test_file.csv");
+        cerr << "RF: Test 0 - PASSED" << endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "RF: Test 0 - FAILED with error: " << e.what() << endl;
+    }
+
+    // Test 1 - correctness of data base in Route Finder
+    RouteFinder rf("test_file.csv");
+    if(rf.get_db().get_connections().size() != 4)
+        cerr << "RF: TEST 1 - FAILED" << endl;
+    else
+        cerr << "RF: TEST 1 - PASSED" << endl;
+
+    // Test 2 - Finding city by name
+    City cR("Radom", false, false);
+    if(rf.find_city("Radom") != cR)
+        cerr << "RF: TEST 2 - FAILED" << endl;
+    else
+        cerr << "RF: TEST 2 - PASSED" << endl;
+
+    // Test 3 - Finding connection no changes
+    if(rf.find_user_connection("Warszawa", "Radom", CHEAPEST, TRAIN).get_connection_elements().size() != 1)
+        cerr << "RF: TEST 3 - FAILED" << endl;
+    else
+        cerr << "RF: TEST 3 - PASSED" << endl;
+
+    // Test 4 - Finding connection with change
+    if(rf.find_user_connection("Kraków", "Radom", CHEAPEST, TRAIN).get_connection_elements().size() != 2)
+        cerr << "RF: TEST 4 - FAILED" << endl;
+    else
+        cerr << "RF: TEST 4 - PASSED" << endl;
+    
+    // Test 5 - Finding cheapest connection, type-BUS
+    if(rf.find_user_connection("Warszawa", "Radom", CHEAPEST, TRAIN).get_cost() != 20)
+        cerr << "RF: TEST 5 - FAILED" << endl;
+    else
+        cerr << "RF: TEST 5 - PASSED" << endl;
+
+    // Test 6 - Finding fastest connection, type-BUS
+    if(rf.find_user_connection("Warszawa", "Radom", FASTEST, TRAIN).get_time() != 90)
+        cerr << "RF: TEST 6 - FAILED" << endl;
+    else
+        cerr << "RF: TEST 6 - PASSED" << endl;
+
+    // Test 7 - Finding shortest connection, type-BUS
+    if(rf.find_user_connection("Warszawa", "Radom", SHORTEST, TRAIN).get_distance() != 50000)
+        cerr << "RF: TEST 7 - FAILED" << endl;
+    else
+        cerr << "RF: TEST 7 - PASSED" << endl;
+
+    // Test 8 - Finding cheapest connection, type-BOTH, with change
+    if(rf.find_user_connection("Kraków", "Radom", CHEAPEST, TRAIN).get_cost() != 110)
+        cerr << "RF: TEST 8 - FAILED" << endl;
+    else
+        cerr << "RF: TEST 8 - PASSED" << endl;
+
+    // Test 9 - Finding cheapest connection, type-BOTH, with change, Bus and train
+    if(rf.find_user_connection("Tarnów", "Warszawa", CHEAPEST, BOTH).get_cost() != 76)
+        cerr << "RF: TEST 9 - FAILED" << endl;
+    else
+        cerr << "RF: TEST 9 - PASSED" << endl;
+
+    // Test 10 - Finding fastest connection, with 2 changes
+    if(rf.find_user_connection("Tarnów", "Kraków", CHEAPEST, BOTH).get_time() != 370)
+        cerr << "RF: TEST 10 - FAILED" << endl;
+
+    else if(rf.find_user_connection("Tarnów", "Kraków", CHEAPEST, BOTH).get_connection_elements().size() != 3)
+        cerr << "RF: TEST 10 - FAILED" << endl;
+    else
+        cerr << "RF: TEST 10 - PASSED" << endl;
+
+    // Test 11 searching not existing connection
+     try
+    {
+        rf.find_user_connection("Tarnów", "Radom", CHEAPEST, TRAIN);
+        cerr << "RF: Test 11 - FAILED" << endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "RF: Test 11 - PASSED with error: " << e.what() << endl;
+    }
 }
 
 

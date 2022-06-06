@@ -33,18 +33,18 @@ void Matrix::extend_matrix()
 {
     DirectConnection ***temp_p = new DirectConnection **[size+1];
 
-    for (int i = 0; i < size+1; i++)
+    for (unsigned int i = 0; i < size+1; i++)
     {
         temp_p[i] = new DirectConnection *[size+1];
-        for (int j = 0; j < size+1 ; j++)
+        for (unsigned int j = 0; j < size+1 ; j++)
         {
                 temp_p[i][j] = nullptr;
         }
     }
 
-    for(int i = 0; i<size;i++)
+    for(unsigned int i = 0; i<size;i++)
     {
-    for(int j=0; j<size;j++)
+    for(unsigned int j = 0; j<size;j++)
     {
         temp_p[i][j] = p[i][j];
     }
@@ -59,7 +59,7 @@ void Matrix::extend_matrix()
 //method to check is there a connection with city in matrix
 bool Matrix::isCity(City const& city) const
 {
-    for(int i = 0; i<size; i++)
+    for(unsigned int i = 0; i<size; i++)
     {
         if(cites[i] == city)
         return true;
@@ -76,7 +76,7 @@ void Matrix::add_connection(DirectConnection *cnt)
         int i_to_assign;
         int j_to_assign;
 
-        for(int i = 0; i<cites.size(); i++)
+        for(unsigned int i = 0; i<cites.size(); i++)
         {
             if(cites[i]==cnt->get_PlaceA())
             i_to_assign = i;
@@ -90,7 +90,7 @@ void Matrix::add_connection(DirectConnection *cnt)
     else if(this->isCity(cnt->get_PlaceA()))
     {
         this->extend_matrix();
-        for( int i = 0; i < size; i++)
+        for( unsigned int i = 0; i < size; i++)
         {
             if(cites[i] == cnt->get_PlaceA())
             {
@@ -103,7 +103,7 @@ void Matrix::add_connection(DirectConnection *cnt)
     else if(this->isCity(cnt->get_PlaceB()))
     {
         this->extend_matrix();
-        for( int i = 0; i < size; i++)
+        for(unsigned int i = 0; i < size; i++)
         {
             if(cites[i] == cnt->get_PlaceB())
             {
@@ -128,21 +128,17 @@ void Matrix::add_connection(DirectConnection *cnt)
 // returning pointer to connection using cities - if not found return nullptr
 DirectConnection * Matrix::operator()(City const& CityA, City const& CityB)
 {
-    for(int i = 0 ; i < size ; i++)
+    for(unsigned int i = 0; i < size; i++)
     {
-    if(p[i][0]!=nullptr)
+    for(unsigned int j = 0; j < size; j++)
     {
-    if(p[i][0]->get_PlaceA() == CityA || p[i][0]->get_PlaceB() == CityA)
-    {
-        for(int j = 0; j < size ; j++)
+        if(p[i][j] != nullptr)
         {
-            if(p[i][j]!=nullptr)
-            {
-            if(p[i][j]->get_PlaceA() == CityB || p[i][j]->get_PlaceB() == CityB)
-            {return p[i][j];}
-            }
+            if(p[i][j]->get_PlaceA() == CityA && p[i][j]->get_PlaceB() == CityB)
+                return p[j][i];
+            else if(p[i][j]->get_PlaceB() == CityA && p[i][j]->get_PlaceA() == CityB)
+                return p[j][i];
         }
-    }
     }
     }
     return nullptr;
@@ -152,7 +148,7 @@ DirectConnection * Matrix::operator()(City const& CityA, City const& CityB)
 // returning pointer to connection using index
 DirectConnection * Matrix::operator()(int i, int j){
     if(i>this->get_size() || j > this->get_size()){
-        throw MyException("Matrix index out of range");
+        throw WrongRouteException("Matrix index out of range");
     }
     return p[i][j];
 }
@@ -162,9 +158,9 @@ DirectConnection * Matrix::operator()(int i, int j){
 std::string Matrix::description() const
 {
     std::stringstream ss;
-    for(int i = 0; i < size; i++)
+    for(unsigned int i = 0; i < size; i++)
     {
-    for(int j = 0; j < size; j++)
+    for(unsigned int j = 0; j < size; j++)
     {
     if(p[i][j] != nullptr)
     {
@@ -184,9 +180,9 @@ std::string Matrix::description() const
 // printing to cout matrix
 void Matrix::print_matrix()
 {
-    for(int i = 0; i < size; i++)
+    for(unsigned int i = 0; i < size; i++)
     {
-    for(int j = 0; j < size; j++)
+    for(unsigned int j = 0; j < size; j++)
     {
     if(p[i][j] != nullptr)
     {
@@ -205,9 +201,9 @@ void Matrix::print_matrix()
 //replacing every pointer to a nullptr in matrix;
 void Matrix::clean()
 {
-    for(int i = 0; i < size; i++)
+    for(unsigned int i = 0; i < size; i++)
     {
-    for(int j = 0; j < size; j++)
+    for(unsigned int j = 0; j < size; j++)
     {
         p[j][i] = nullptr;
     }
