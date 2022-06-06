@@ -186,15 +186,23 @@ unsigned  int  t, City  const&  PA, City  const&  PB, station_type  tp);
 
 **Atrybuty:**   
 >* **std::vector\<DirectConnection>**  connections;  
+> *wektor wszystkich połączeń bezpośrednich odczytanych z pliku*  
 >* **std::vector\<City>**  cities;  
+> *wektor wszystkich miast występujących w połączeniach odczytanych z pliku*  
 >* **Matrix**  current_matrix;  
+> *akturalnie przechowywana macierz połączeń*  
 >* **possible_type**  current_station_type;  
+> *informacja o rodzajach połączeń w macierzy: train/bus/both*  
 >* **possible_search_setting**  current_search_setting;  
+> *informacja o ustawieniach macierzy: najtańsze/najszybsze/najkrótsze*  
 >* **std::string**  path;  
+> *ścieżka do pliku połączeń*
 
 **Metody prywatne:**  
 >* **void**  add_city_using_connection(DirectConnection  const&  dc);   
+> *metoda dodająca miasta na podstawie DirectConnection*
 >* **std::vector\<City>** city_using_info(std::string  const&  nameA, std::string  const&  nameB, station_type  type);  
+> *metoda dodająca miasta (lub edytująca obecne miasta) na podstawie zaledwie 3 informacji z DirectConnection, dodatkowo zwraca wektor z dodanymi miastami*  
 
 **Metody:**  
 >* DataBase();  
@@ -202,6 +210,7 @@ unsigned  int  t, City  const&  PA, City  const&  PB, station_type  tp);
 >* DataBase(std::string  const&  filepath, std::vector\<DirectConnection> c);  
 >* **void**  add_direct_connection(DirectConnection  const&  dc);  
 >* **void**  add_direct_connection(unsigned  int  dist, unsigned  int  cost, unsigned int  time, std::string const&  PlaceA, std::string  const&  PlaceB, station_type  type);  
+> *Dodaje połączenie na podstawie informcji od użytkownika, bez konieczności wcześniejszego tworzenia obiektu typu City, ani znajomości indeksu (autoindeksowanie)*  
 >* **possible_search_setting**  get_current_setting() const;  
 >* **possible_type**  get_current_stations_type() const;  
 >* **Matrix**  get_current_matrix() const;  
@@ -211,20 +220,24 @@ unsigned  int  t, City  const&  PA, City  const&  PB, station_type  tp);
 >* **void**  create_cheapest_matrix(possible_type  const&  type);  
 >* **void**  create_fastest_matrix(possible_type  const&  type);  
 >* **void**  create_shortest_matrix(possible_type  const&  type);  
+> *Trzy powyższe metody "create" tworzą na podstawie wektora połączeń bezpośrednich macierz o konkretnych właściwościach tj. wybór opcji create_cheapest_matrix(BUS) utworzy macierz z najtańszymi połączeniami (jeżeli istnieje więcej niż jedno połączenie między tymi samymi miastami). Dodatkowo wszystkie te połączenia będą autobusowe.*   
 >* **void**  update_data_base() const;  
+> *aktualizuje plik, jeżeli dodano nowe połączenia manualnie*  
 >* **void**  load_file();  
+> *ładuje połączenia z pliku*
 -----------
 ### FinderAlgorithm  
 **Opis klasy:**  
-> Lorem ipsum is a giasjdo. asodjasd asdadasd. AFsdf. ASDasdasd
-> aasdad aSDASD asdADASdadsd....  
+> Klasa odpowiadająca za przeprowadzenie algorytmu wyszukiwania na podstawie podanych miast, ustawień, oraz macierzy połączeń.
 
 **Atrybuty**:  
 >* **Matrix**  connections_matrix;  
+> *macierz połączeń bezpośrednich*
 >* **std::vector\<int>**  distance;  
 >* **std::vector\<int>**  previous;  
 >* **std::vector\<City>**  used;  
 >* **std::vector\<City>**  cities;  
+> *wektory pomocniczne dla algorytmu*  
 
 **Metody prywatne:**  
 >* **bool**  is_used(City  const&  ct) const;  
@@ -250,12 +263,13 @@ unsigned  int  t, City  const&  PA, City  const&  PB, station_type  tp);
 ---------
 ### RouteFinder  
 **Opis klasy:**  
-> Lorem ipsum is a giasjdo. asodjasd asdadasd. AFsdf. ASDasdasd
-> aasdad aSDASD asdADASdadsd....  
+> Główna klasa całego programu. W swoich atrybutach posiada bazę danych oraz obiekt typu FinderAlgorithm. Łączy ich działanie w całość oraz zawiera proste, gotowe do użycia przez interface metody. 
 
 **Atrybuty:**  
 >* **DataBase**  db;  
+> *obiekt typu DataBase wykorzystywany do tworzenia macierzy i odczytu z plików*  
 >* **FinderAlgorithm**  FA;  
+	>*obiekt typu FinderAlgorithm komunikujący się z bazą danych i wyszukujący połączeń*  
 >* **City**  UserCityA;  
 >* **City**  UserCityB;  
 
@@ -268,18 +282,19 @@ unsigned  int  t, City  const&  PA, City  const&  PB, station_type  tp);
 -----
 ### Interface  
 **Opis klasy**  
-> Lorem ipsum i chuj z nimi  
+> Klasa odpowiadająca za interakcję z użytkownikiem. Zawiera metody poprawiające czytelność programu. Aby uruchomić aplikację należy stworzyć obiekt typu Interface, a następnie wywołać metodę run_interface(). Żadne dodatkowe ustawienia nie są wymagane.
 
 **Metody:**  
 >* Interface();  
 >* **void**  run_interface();  
+> *metoda uruchamiająca całą aplikację*
 >* **int**  choose_function();  
 >* **enum  possible_search_setting**  choose_setting();  
 >* **enum  possible_type**  choose_type();  
 --------
 ### Tests  
 **Opis klasy**  
-> Lorem ipsum i chuj z nimi  
+> Klasa przeprowadzająca testy jednostkowe. Zawiera szereg metod prywatnych testujących działanie aplikacji. Aby uruchomić je wszystkie zwyczajnie należy stworzyć obiekt tej klasy, a następnie wywołać metodę run_test(). W terminalu pojawi się wtedy informacja o przebiegu wszystkich testów.  
 
 **Metody prywatne:**  
 >* **void**  test_City() const;  
@@ -292,8 +307,12 @@ unsigned  int  t, City  const&  PA, City  const&  PB, station_type  tp);
 
 **Metody:**  
 >* **void**  run_test() const;  
+> *metoda uruchamiająca testy jednostkowe*
 -----
 ### Struktury wyjątków  
+**Przeznaczenie struktur**  
+> Struktury wyjątków napisane zostały w celu obsługi błędów programu. W konstruktorze przyjmują ciąg znaków string stanowiący wiadomość o błędzie. Wykorzystywane są w aplikacji w miejscach, które mogą stanowić problem ( np. nie udało się znaleźć połączenia z podanymi parametrami ).  
+
 **Wyjątki:**  
 >* MyException  
 >* dcAlreadyAddedError  
