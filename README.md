@@ -30,6 +30,19 @@
 >>
 >> Po dodaniu połączenia automatycznie zostanie nadany mu odpowiedni indeks, a miasta między którymi dane połączenie występuje, zaktualizują informacje o wystąpieniu stacji autobusowej lub stacji dla pociągów.  
 -----
+
+## Uruchomienie programu  
+### System operacyjny:  
+Linux (*program testowany był na distro Ubuntu*)  
+### Kompilacja  
+W celu skompilowania programu w terminalu należy wpisać polecenie ***make***.  
+### Plik wykonywalny  
+W celu wywołania aplikacji w terminu należy wpisać polecenie ***./RouteFinder.out***  
+### Testy  
+W celu uruchomienia testów jednostkowych należy wpisać w terminalu serię poleceń:  
+* ***make run_tests***  
+* ***./tests.out***  
+
  ## Struktura programu  
  
  ### Lista klas:  
@@ -321,14 +334,3 @@ unsigned  int  t, City  const&  PA, City  const&  PB, station_type  tp);
 >* DCNotFoundException  
 >* ConnectionNotFoundException  
 ---
-## Uruchomienie programu  
-### System operacyjny:  
-Linux (*program testowany był na distro Ubuntu*)  
-### Kompilacja  
-W celu skompilowania programu w terminalu należy wpisać polecenie ***make***.  
-### Plik wykonywalny  
-W celu wywołania aplikacji w terminu należy wpisać polecenie ***./RouteFinder.out***  
-### Testy  
-W celu uruchomienia testów jednostkowych należy wpisać w terminalu serię poleceń:  
-* ***make run_tests***  
-* ***./tests.out***  
